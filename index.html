@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="글자수 세기, 비만도 계산, 로또 번호 생성 등 생활에 필요한 10가지 필수 유틸리티 도구를 무료로 제공합니다.">
+    <title>데일리 툴즈 - 생활 필수 웹 도구 모음</title>
+    <style>
+        /* === 1. 기본 설정 및 반응형 레이아웃 === */
+        :root {
+            --primary: #2563eb;
+            --bg: #f8fafc;
+            --sidebar-w: 260px;
+            --text-main: #1e293b;
+            --text-sub: #64748b;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            margin: 0;
+            background-color: var(--bg);
+            color: var(--text-main);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* 데스크탑: 좌측 사이드바 */
+        nav {
+            width: var(--sidebar-w);
+            background: white;
+            border-right: 1px solid #e2e8f0;
+            position: fixed;
+            height: 100%;
+            overflow-y: auto;
+            z-index: 10;
+        }
+
+        .brand {
+            padding: 20px;
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--primary);
+            border-bottom: 1px solid #f1f5f9;
+            text-align: center;
+        }
+
+        .menu-list {
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+        }
+
+        .menu-btn {
+            padding: 12px 16px;
+            margin-bottom: 4px;
+            border: none;
+            background: none;
+            text-align: left;
+            cursor: pointer;
+            border-radius: 8px;
+            color: var(--text-sub);
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .menu-btn:hover { background-color: #eff6ff; color: var(--primary); }
+        .menu-btn.active { background-color: #eff6ff; color: var(--primary); font-weight: 600; }
+
+        /* 메인 콘텐츠 영역 */
+        main {
+            flex: 1;
+            margin-left: var(--sidebar-w); /* 사이드바 너비만큼 밀기 */
+            padding: 30px;
+            max-width: 900px; /* 가독성을 위한 최대 너비 제한 */
+        }
+
+        /* === 2. 모바일 최적화 (768px 이하) === */
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            
+            nav {
+                width: 100%;
+                height: auto;
+                position: sticky;
+                top: 0;
+                border-right: none;
+                border-bottom: 1px solid #e2e8f0;
+                display: flex;
+                align-items: center;
+                overflow-x: auto; /* 가로 스크롤 허용 */
+                white-space: nowrap;
+                padding: 0;
+            }
+
+            .brand { display: none; } /* 모바일에서 로고 숨김 or 작게 변경 */
+            
+            .menu-list {
+                flex-direction: row;
+                padding: 10px;
+                gap: 10px;
+            }
+
+            .menu-btn { margin: 0; padding: 8px 16px; font-size: 0.9rem; background: #f1f5f9; }
+            .menu-btn.active { background: var(--primary); color: white; }
+
+            main { margin-left: 0; padding: 20px; }
+        }
+
+        /* === 3. 도구 공통 스타일 === */
+        .tool-container { display: none; animation: fadeIn 0.3s ease-in-out; }
+        .tool-container.active { display: block; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            margin-bottom: 24px;
+        }
+
+        h1 { margin: 0 0 20px 0; font-size: 1.5rem; }
+        h2 { font-size: 1.2rem; margin-top: 30px; color: #334155; }
+        p { line-height: 1.6; color: #475569; }
+
+        /* 입력 및 버튼 UI */
+        textarea, input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            outline: none;
+        }
+        
+        textarea:focus, input:focus { border-color: var(--primary); ring: 2px solid #eff6ff; }
+
+        .btn-primary {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .btn-primary:hover { background-color: #1d4ed8; }
+
+        .result-box {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f1f5f9;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #0f172a;
+        }
+
+        /* === 4. 애드센스 전용 영역 (배치 전략) === */
+        .ad-space {
+            background-color: #f0f0f0;
+            border: 1px dashed #ccc;
+            text-align: center;
+            color: #999;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-size: 0.8rem;
+        }
+        /* 실제 광고 코드 넣을 때 display:block 확인 필요 */
+
+        /* SEO를 위한 텍스트 설명 영역 (필수!) */
+        .info-section {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="brand">🚀 Daily Tools</div>
+        <div class="menu-list">
+            <button class="menu-btn active" onclick="showTool(0)">📝 글자수 세기</button>
+            <button class="menu-btn" onclick="showTool(1)">🔐 비밀번호 생성</button>
+            <button class="menu-btn" onclick="showTool(2)">⚖️ BMI 계산기</button>
+            <button class="menu-btn" onclick="showTool(3)">🎰 로또 번호</button>
+            <button class="menu-btn" onclick="showTool(4)">💯 퍼센트 계산</button>
+            <button class="menu-btn" onclick="showTool(5)">🎂 만 나이 계산</button>
+            <button class="menu-btn" onclick="showTool(6)">🔠 대소문자 변환</button>
+            <button class="menu-btn" onclick="showTool(7)">⏱️ 스톱워치</button>
+            <button class="menu-btn" onclick="showTool(8)">📆 D-Day 계산</button>
+            <button class="menu-btn" onclick="showTool(9)">🎨 색상 변환</button>
+        </div>
+    </nav>
+
+    <main>
+        <div class="ad-space">상단 광고 영역 (구글 애드센스 코드 삽입)</div>
+
+        <div class="tool-container active" id="tool-0">
+            <div class="card">
+                <h1>📝 글자 수 세기 및 검사기</h1>
+                <textarea id="txtInput" rows="10" placeholder="내용을 입력해주세요..." oninput="countText()"></textarea>
+                <div class="result-box">
+                    공백 포함: <span id="resWithSpace">0</span>자 / 공백 제외: <span id="resNoSpace">0</span>자
+                </div>
+            </div>
+            <div class="info-section">
+                <h2>이 도구는 언제 쓰나요?</h2>
+                <p>자기소개서 작성, 블로그 포스팅, 이메일 작성 시 글자 수를 확인해야 할 때 유용합니다. 네이버 글자 수 세기와 동일한 로직으로 공백 포함 및 제외 글자 수를 실시간으로 계산해 줍니다.</p>
+            </div>
+        </div>
+
+        <div class="tool-container" id="tool-1">
+            <div class="card">
+                <h1>🔐 강력한 비밀번호 생성기</h1>
+                <p>원하는 길이를 설정하고 생성 버튼을 누르세요.</p>
+                <input type="range" id="pwLen" min="6" max="30" value="12" oninput="document.getElementById('pwLenTxt').innerText=this.value">
+                <p>길이: <span id="pwLenTxt">12</span>자</p>
+                <button class="btn-primary" onclick="genPw()">비밀번호 생성하기</button>
+                <div class="result-box" id="pwRes" style="word-break: break-all;">-</div>
+            </div>
+            <div class="info-section">
+                <h2>안전한 비밀번호란?</h2>
+                <p>대문자, 소문자, 숫자, 특수문자가 섞인 10자리 이상의 비밀번호를 사용하는 것이 좋습니다. 이 도구는 서버에 저장되지 않는 난수를 생성하므로 안전합니다.</p>
+            </div>
+        </div>
+
+        <div class="tool-container" id="tool-2">
+            <div class="card">
+                <h1>⚖️ BMI 비만도 계산기</h1>
+                <input type="number" id="bmiH" placeholder="키 (cm)">
+                <input type="number" id="bmiW" placeholder="몸무게 (kg)">
+                <button class="btn-primary" onclick="calcBMI()">계산하기</button>
+                <div class="result-box" id="bmiRes">-</div>
+            </div>
+            <div class="info-section">
+                <h2>BMI 지수 기준</h2>
+                <p>체질량지수(BMI)는 자신의 몸무게(kg)를 키의 제곱(m)으로 나눈 값입니다. 18.5 이하는 저체중, 23 이상은 과체중, 25 이상은 비만으로 분류됩니다.</p>
+            </div>
+        </div>
+
+        <div class="tool-container" id="tool-3">
+            <div class="card">
+                <h1>🎰 로또 번호 추첨기</h1>
+                <button class="btn-primary" onclick="genLotto()">행운의 번호 뽑기</button>
+                <div class="result-box" id="lottoRes">? ? ? ? ? ?</div>
+            </div>
+             <div class="info-section">
+                <h2>로또 번호 생성 원리</h2>
+                <p>1부터 45까지의 숫자 중 중복되지 않는 6개의 숫자를 무작위로 추출합니다. 재미로만 즐겨주세요!</p>
+            </div>
+        </div>
+
+        <div class="tool-container" id="tool-4">
+            <div class="card">
+                <h1>💯 퍼센트 계산기</h1>
+                <input type="number" id="perNum" placeholder="전체 값 (예: 50000)">
+                <input type="number" id="perRate" placeholder="비율 % (예: 20)">
+                <button class="btn-primary" onclick="calcPer()">계산</button>
+                <div class="result-box" id="perRes">-</div>
+            </div>
+             <div class="info-section">
+                <h2>활용 팁</h2>
+                <p>쇼핑할 때 할인된 가격을 계산하거나, 주식 수익률을 계산할 때 유용하게 사용할 수 있습니다.</p>
+            </div>
+        </div>
+
+        <div class="tool-container" id="tool-5">
+            <div class="card">
+                <h1>🎂 만 나이 계산기</h1>
+                <input type="date" id="birthDate">
+                <button class="btn-primary" onclick="calcAge()">내 만 나이 확인</button>
+                <div class="result-box" id="ageRes">-</div>
+            </div>
+             <div class="info-section">
+                <h2>만 나이 통일법</h2>
+                <p>한국에서도 이제 '만 나이'가 공식적인 나이 계산법입니다. 생일이 지났다면 (현재 연도 - 출생 연도), 지나지 않았다면 1살을 더 뺍니다.</p>
+            </div>
+        </div>
+
+        <div class="tool-container" id="tool-6">
+            <div class="card">
+                <h1>🔠 영어 대소문자 변환기</h1>
+                <textarea id="caseTxt" rows="5" placeholder="English Text Here..."></textarea>
+                <div style="display:flex; gap:10px;">
+                    <button class="btn-primary" onclick="toUpper()">모두 대문자</button>
+                    <button class="btn-primary" onclick="toLower()">모두 소문자</button>
+                </div>
+            </div>
+             <div class="info-section">
+                <h2>사용 팁</h2>
+                <p>코딩 변수명을 짓거나, 영어 문서를 작성할 때 일괄적으로 포맷을 변경할 수 있어 편리합니다.</p>
+            </div>
+        </div>
+
+        <div class="tool-container" id="tool-7">
+            <div class="card">
+                <h1>⏱️ 온라인 스톱워치</h1>
+                <div class="result-box" id="timeDisplay" style="font-size: 3rem; font-family: monospace;">00:00:00</div>
+                <button class="btn-primary" id="stopwatchBtn" onclick="toggleStopwatch()">시작</button>
+                <button class="btn-primary" onclick="resetStopwatch()" style="margin-top:10px; background-color:#ef4444;">리셋</button>
+            </div>
+             <div class="info-section">
+                <h2>기능 설명</h2>
+                <p>운동, 요리, 공부 시간을 측정할 때 사용하세요. 브라우저 창을 닫으면 초기화됩니다.</p>
+            </div>
+        </div>
+
+        <div class="tool-container" id="tool-8">
+            <div class="card">
+                <h1>📆 D-Day 계산기</h1>
+                <label>목표 날짜:</label>
+                <input type="date" id="ddayTarget">
+                <button class="btn-primary" onclick="calcDDay()">남은 날짜 확인</button>
+                <div class="result-box" id="ddayRes">-</div>
+            </div>
+             <div class="info-section">
+                <h2>디데이 계산</h2>
+                <p>수능, 시험, 기념일 등 중요한 날까지 며칠이 남았는지 정확하게 계산해 줍니다.</p>
+            </div>
+        </div>
+
+        <div class="tool-container" id="tool-9">
+            <div class="card">
+                <h1>🎨 HEX to RGB 변환기</h1>
+                <label>색상 선택:</label>
+                <input type="color" id="colorPicker" style="height: 50px;" oninput="convertColor()">
+                <div class="result-box" id="colorRes" style="font-size:1rem;">색상을 선택하세요</div>
+            </div>
+             <div class="info-section">
+                <h2>웹 디자인 필수 도구</h2>
+                <p>디자이너와 개발자를 위해 HEX 코드(예: #ffffff)와 RGB 값(예: 255, 255, 255)을 실시간으로 변환해 보여줍니다.</p>
+            </div>
+        </div>
+
+        <div class="ad-space">하단 광고 영역 (구글 애드센스 코드 삽입)</div>
+
+        <footer style="margin-top:50px; text-align:center; font-size:0.8rem; color:#999; padding-bottom: 20px;">
+            <p>&copy; 2024 Daily Tools. All rights reserved.</p>
+            <p><a href="#" style="color:#999;">개인정보처리방침</a> | <a href="#" style="color:#999;">문의하기</a></p>
+        </footer>
+    </main>
+
+    <script>
+        // === UI 로직: 탭 전환 ===
+        function showTool(index) {
+            // 모든 콘텐츠 숨김
+            document.querySelectorAll('.tool-container').forEach(el => el.classList.remove('active'));
+            // 모든 메뉴 버튼 비활성화
+            document.querySelectorAll('.menu-btn').forEach(el => el.classList.remove('active'));
+            
+            // 선택된 것만 활성화
+            document.getElementById(`tool-${index}`).classList.add('active');
+            document.querySelectorAll('.menu-btn')[index].classList.add('active');
+            
+            // 모바일이면 메뉴 클릭 시 스크롤 위치 조정 (사용자 경험 개선)
+            if(window.innerWidth <= 768) {
+                window.scrollTo({top: 0, behavior: 'smooth'});
+            }
+        }
+
+        // === 1. 글자수 ===
+        function countText() {
+            const t = document.getElementById('txtInput').value;
+            document.getElementById('resWithSpace').innerText = t.length;
+            document.getElementById('resNoSpace').innerText = t.replace(/\s/g, '').length;
+        }
+
+        // === 2. 비밀번호 ===
+        function genPw() {
+            const len = document.getElementById('pwLen').value;
+            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
+            let res = "";
+            for(let i=0; i<len; i++) res += chars.charAt(Math.floor(Math.random()*chars.length));
+            document.getElementById('pwRes').innerText = res;
+        }
+
+        // === 3. BMI ===
+        function calcBMI() {
+            const h = document.getElementById('bmiH').value / 100;
+            const w = document.getElementById('bmiW').value;
+            if(!h || !w) return;
+            const bmi = (w/(h*h)).toFixed(2);
+            let s = bmi<18.5?"저체중":bmi<23?"정상":bmi<25?"과체중":"비만";
+            document.getElementById('bmiRes').innerText = `${bmi} (${s})`;
+        }
+
+        // === 4. 로또 ===
+        function genLotto() {
+            const s = new Set();
+            while(s.size<6) s.add(Math.floor(Math.random()*45)+1);
+            document.getElementById('lottoRes').innerText = [...s].sort((a,b)=>a-b).join(' ');
+        }
+
+        // === 5. 퍼센트 ===
+        function calcPer() {
+            const n = document.getElementById('perNum').value;
+            const r = document.getElementById('perRate').value;
+            document.getElementById('perRes').innerText = (n*(r/100)).toLocaleString();
+        }
+
+        // === 6. 만 나이 ===
+        function calcAge() {
+            const b = new Date(document.getElementById('birthDate').value);
+            const t = new Date();
+            if(!b.getTime()) return;
+            let a = t.getFullYear() - b.getFullYear();
+            const m = t.getMonth() - b.getMonth();
+            if(m<0 || (m===0 && t.getDate() < b.getDate())) a--;
+            document.getElementById('ageRes').innerText = `만 ${a}세`;
+        }
+
+        // === 7. 대소문자 ===
+        function toUpper() { document.getElementById('caseTxt').value = document.getElementById('caseTxt').value.toUpperCase(); }
+        function toLower() { document.getElementById('caseTxt').value = document.getElementById('caseTxt').value.toLowerCase(); }
+
+        // === 8. 스톱워치 ===
+        let timer = null;
+        let seconds = 0;
+        function toggleStopwatch() {
+            const btn = document.getElementById('stopwatchBtn');
+            if(timer) {
+                clearInterval(timer);
+                timer = null;
+                btn.innerText = "시작";
+                btn.style.backgroundColor = "#2563eb";
+            } else {
+                timer = setInterval(() => {
+                    seconds++;
+                    const h = String(Math.floor(seconds/3600)).padStart(2,'0');
+                    const m = String(Math.floor((seconds%3600)/60)).padStart(2,'0');
+                    const s = String(seconds%60).padStart(2,'0');
+                    document.getElementById('timeDisplay').innerText = `${h}:${m}:${s}`;
+                }, 1000);
+                btn.innerText = "정지";
+                btn.style.backgroundColor = "#f59e0b";
+            }
+        }
+        function resetStopwatch() {
+            clearInterval(timer); timer = null; seconds = 0;
+            document.getElementById('timeDisplay').innerText = "00:00:00";
+            document.getElementById('stopwatchBtn').innerText = "시작";
+            document.getElementById('stopwatchBtn').style.backgroundColor = "#2563eb";
+        }
+
+        // === 9. D-Day ===
+        function calcDDay() {
+            const target = new Date(document.getElementById('ddayTarget').value);
+            const today = new Date();
+            if(!target.getTime()) return;
+            const diff = target - today;
+            const day = Math.ceil(diff / (1000*60*60*24));
+            document.getElementById('ddayRes').innerText = day > 0 ? `D-${day}` : `D+${Math.abs(day)}`;
+        }
+
+        // === 10. 색상 ===
+        function convertColor() {
+            const v = document.getElementById('colorPicker').value;
+            const r = parseInt(v.substr(1,2),16);
+            const g = parseInt(v.substr(3,2),16);
+            const b = parseInt(v.substr(5,2),16);
+            document.getElementById('colorRes').innerHTML = `HEX: ${v}<br>RGB: (${r}, ${g}, ${b})`;
+        }
+    </script>
+</body>
+</html>

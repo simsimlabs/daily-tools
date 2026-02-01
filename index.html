@@ -271,79 +271,326 @@
     </div>
 
     <script>
-        // === 기능 스크립트 ===
-        // 1. 다크모드
-        function toggleTheme() {
-            document.body.classList.toggle('dark-mode');
-            localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
-        }
-        if(localStorage.getItem('theme') === 'dark') document.body.classList.add('dark-mode');
+    // ============================================================
+    // 1. 공통 UI 로직 (테마, 탭, 모달)
+    // ============================================================
 
-        // 2. 탭 전환
-        function showTool(idx) {
-            document.querySelectorAll('.tool-container').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.menu-btn').forEach(el => el.classList.remove('active'));
-            document.getElementById(`tool-${idx}`).classList.add('active');
-            document.querySelectorAll('.menu-btn')[idx].classList.add('active');
-            if(window.innerWidth <= 768) document.querySelector('main').scrollTop = 0;
-        }
+    // 1-1. 다크모드 설정
+    function toggleTheme() {
+        document.body.classList.toggle('dark-mode');
+        // 사용자의 설정을 브라우저에 저장 (새로고침 해도 유지)
+        localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    // 페이지 로드 시 저장된 테마 불러오기
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+    }
 
-        // 3. 모달 (팝업) 제어
-        function openModal(id) { document.getElementById(id).classList.add('open'); }
-        function closeModal(id) { document.getElementById(id).classList.remove('open'); }
-        // 모달 바깥 클릭 시 닫기
-        window.onclick = function(event) {
-            if (event.target.classList.contains('modal-overlay')) {
-                event.target.classList.remove('open');
-            }
-        }
+    // 1-2. 탭(메뉴) 전환 기능
+    function showTool(idx) {
+        // 모든 도구 숨기기 & 메뉴 비활성화
+        document.querySelectorAll('.tool-container').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.menu-btn').forEach(el => el.classList.remove('active'));
 
-        // === 도구별 로직 (기존 20개 기능 유지) ===
-        // (코드가 너무 길어지므로, 핵심 로직은 아까 작성해주신 script 내용을 그대로 사용하시면 됩니다.)
-        // 아래는 편의상 짧게 압축한 버전입니다. 반드시 아까 완성된 전체 스크립트를 여기에 붙여넣으세요.
+        // 선택한 도구 보여주기 & 메뉴 활성화
+        document.getElementById(`tool-${idx}`).classList.add('active');
+        document.querySelectorAll('.menu-btn')[idx].classList.add('active');
+
+        // 모바일에서는 메뉴 클릭 시 화면 맨 위로 이동
+        if (window.innerWidth <= 768) {
+            document.querySelector('main').scrollTop = 0;
+        }
+    }
+
+    // 1-3. 팝업(모달) 제어
+    function openModal(id) {
+        document.getElementById(id).classList.add('open');
+    }
+
+    function closeModal(id) {
+        document.getElementById(id).classList.remove('open');
+    }
+    // 팝업 바깥 어두운 배경 클릭 시 닫기
+    window.onclick = function(event) {
+        if (event.target.classList.contains('modal-overlay')) {
+            event.target.classList.remove('open');
+        }
+    }
+
+
+    // ============================================================
+    // 2. 도구별 기능 함수 (총 20개)
+    // ============================================================
+
+    // [Tool 0] 글자 수 세기
+    function countText() {
+        const t = document.getElementById('txtInput').value;
+        document.getElementById('resWithSpace').innerText = t.length;
+        document.getElementById('resNoSpace').innerText = t.replace(/\s/g, '').length;
+    }
+
+    // [Tool 1] 비밀번호 생성
+    function genPw() {
+        const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
+        let result = "";
+        const len = document.getElementById('pwLen').value;
+        for (let i = 0; i < len; i++) {
+            result += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        document.getElementById('pwRes').innerText = result;
+    }
+
+    // [Tool 2] BMI 계산
+    function calcBMI() {
+        const h = document.getElementById('bmiH').value / 100; // cm -> m 변환
+        const w = document.getElementById('bmiW').value;
+        if (!h || !w) return;
+        const bmi = (w / (h * h)).toFixed(2);
+        let status = bmi < 18.5 ? "저체중" : bmi < 23 ? "정상" : bmi < 25 ? "과체중" : "비만";
+        document.getElementById('bmiRes').innerText = `${bmi} (${status})`;
+    }
+
+    // [Tool 3] 로또 번호
+    function genLotto() {
+        const set = new Set();
+        while (set.size < 6) {
+            set.add(Math.floor(Math.random() * 45) + 1);
+        }
+        // 숫자 정렬 후 출력
+        document.getElementById('lottoRes').innerText = [...set].sort((a, b) => a - b).join('  ');
+    }
+
+    // [Tool 4] 퍼센트 계산
+    function calcPer() {
+        const num = document.getElementById('perNum').value;
+        const rate = document.getElementById('perRate').value;
+        if (num && rate) {
+            document.getElementById('perRes').innerText = (num * (rate / 100)).toLocaleString();
+        }
+    }
+
+    // [Tool 5] 만 나이 계산
+    function calcAge() {
+        const birthDate = new Date(document.getElementById('birthDate').value);
+        const today = new Date();
+        if (!birthDate.getTime()) return;
+
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+        document.getElementById('ageRes').innerText = `만 ${age}세`;
+    }
+
+    // [Tool 6] 대소문자 변환
+    function toUpper() {
+        const area = document.getElementById('caseTxt');
+        area.value = area.value.toUpperCase();
+    }
+
+    function toLower() {
+        const area = document.getElementById('caseTxt');
+        area.value = area.value.toLowerCase();
+    }
+
+    // [Tool 7] 스톱워치
+    let stopwatchTimer = null;
+    let stopwatchSec = 0;
+
+    function toggleStopwatch() {
+        const btn = document.getElementById('stopwatchBtn');
+        if (stopwatchTimer) {
+            // 정지
+            clearInterval(stopwatchTimer);
+            stopwatchTimer = null;
+            btn.innerText = "시작";
+            btn.style.backgroundColor = "var(--primary)";
+        } else {
+            // 시작
+            stopwatchTimer = setInterval(() => {
+                stopwatchSec++;
+                const h = String(Math.floor(stopwatchSec / 3600)).padStart(2, '0');
+                const m = String(Math.floor((stopwatchSec % 3600) / 60)).padStart(2, '0');
+                const s = String(stopwatchSec % 60).padStart(2, '0');
+                document.getElementById('timeDisplay').innerText = `${h}:${m}:${s}`;
+            }, 1000);
+            btn.innerText = "정지";
+            btn.style.backgroundColor = "#f59e0b";
+        }
+    }
+
+    function resetStopwatch() {
+        clearInterval(stopwatchTimer);
+        stopwatchTimer = null;
+        stopwatchSec = 0;
+        document.getElementById('timeDisplay').innerText = "00:00:00";
+        document.getElementById('stopwatchBtn').innerText = "시작";
+        document.getElementById('stopwatchBtn').style.backgroundColor = "var(--primary)";
+    }
+
+    // [Tool 8] D-Day 계산
+    function calcDDay() {
+        const target = new Date(document.getElementById('ddayTarget').value);
+        const today = new Date();
+        // 시간을 00:00:00으로 맞춰서 날짜 차이만 계산
+        today.setHours(0, 0, 0, 0);
         
-        function countText(){ const t=document.getElementById('txtInput').value; document.getElementById('resWithSpace').innerText=t.length; document.getElementById('resNoSpace').innerText=t.replace(/\s/g,'').length; }
-        function genPw(){ const c="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*"; let r=""; const l=document.getElementById('pwLen').value; for(let i=0;i<l;i++) r+=c.charAt(Math.floor(Math.random()*c.length)); document.getElementById('pwRes').innerText=r; }
-        // ... 나머지 3~19번 함수들도 여기에 다 있어야 합니다 ...
-        // (이전 답변의 script 태그 안 내용을 전부 복사해서 여기에 넣으세요!)
+        if (!target.getTime()) return;
         
-        // (BMI, 로또, 퍼센트, 만나이, 대소문자, 스톱워치, 디데이, 색상, 단위, 팁, 타임스탬프, 랜덤, 뒤집기, 줄바꿈, 모스부호, Base64, 메트로놈, 메모장)
-        // 아래는 예시로 메모장만 넣어둠. 꼭 다 채우세요!
-        const memo = document.getElementById('memoPad');
-        if(memo) {
-            memo.value = localStorage.getItem('myMemo') || "";
-            memo.addEventListener('input', function(){ localStorage.setItem('myMemo', this.value); });
-        }
-        function calcBMI(){ const h=document.getElementById('bmiH').value/100; const w=document.getElementById('bmiW').value; if(!h||!w)return; const b=(w/(h*h)).toFixed(2); document.getElementById('bmiRes').innerText=b; }
-        function genLotto(){ const s=new Set(); while(s.size<6) s.add(Math.floor(Math.random()*45)+1); document.getElementById('lottoRes').innerText=[...s].sort((a,b)=>a-b).join(' '); }
-        function calcPer(){ const n=document.getElementById('perNum').value; const r=document.getElementById('perRate').value; document.getElementById('perRes').innerText=(n*(r/100)).toLocaleString(); }
-        function calcAge(){ const b=new Date(document.getElementById('birthDate').value); const t=new Date(); if(!b.getTime())return; let a=t.getFullYear()-b.getFullYear(); if(t.getMonth()<b.getMonth()||(t.getMonth()==b.getMonth()&&t.getDate()<b.getDate())) a--; document.getElementById('ageRes').innerText=`만 ${a}세`; }
-        function toUpper(){ document.getElementById('caseTxt').value = document.getElementById('caseTxt').value.toUpperCase(); }
-        function toLower(){ document.getElementById('caseTxt').value = document.getElementById('caseTxt').value.toLowerCase(); }
-        let timer, sec=0;
-        function toggleStopwatch(){
-            const btn=document.getElementById('stopwatchBtn');
-            if(timer){ clearInterval(timer); timer=null; btn.innerText="시작"; btn.style.backgroundColor="var(--primary)"; }
-            else { timer=setInterval(()=>{ sec++; const h=String(Math.floor(sec/3600)).padStart(2,'0'); const m=String(Math.floor((sec%3600)/60)).padStart(2,'0'); const s=String(sec%60).padStart(2,'0'); document.getElementById('timeDisplay').innerText=`${h}:${m}:${s}`; },1000); btn.innerText="정지"; btn.style.backgroundColor="#f59e0b"; }
-        }
-        function resetStopwatch(){ clearInterval(timer); timer=null; sec=0; document.getElementById('timeDisplay').innerText="00:00:00"; document.getElementById('stopwatchBtn').innerText="시작"; }
-        function calcDDay(){ const t=new Date(document.getElementById('ddayTarget').value); const n=new Date(); if(!t.getTime())return; const d=Math.ceil((t-n)/(1000*60*60*24)); document.getElementById('ddayRes').innerText=d>0?`D-${d}`:`D+${Math.abs(d)}`; }
-        function convertColor(){ const v=document.getElementById('colorPicker').value; const r=parseInt(v.substr(1,2),16); const g=parseInt(v.substr(3,2),16); const b=parseInt(v.substr(5,2),16); document.getElementById('colorRes').innerHTML=`HEX: ${v}<br>RGB: (${r}, ${g}, ${b})`; }
-        function convLen(type){ if(type==='cm'){ const cm = document.getElementById('unitCm').value; document.getElementById('unitInch').value = (cm * 0.393701).toFixed(2); } else { const inc = document.getElementById('unitInch').value; document.getElementById('unitCm').value = (inc * 2.54).toFixed(2); } }
-        function calcTip(){ const bill = Number(document.getElementById('billAmt').value); const ppl = Number(document.getElementById('peopleCnt').value); if(ppl<1) return; document.getElementById('tipRes').innerText = Math.round(bill/ppl).toLocaleString() + "원"; }
-        setInterval(()=>{ document.getElementById('nowTs').innerText = Math.floor(Date.now()/1000); }, 1000);
-        function convTs(){ const ts = document.getElementById('tsInput').value; document.getElementById('tsRes').innerText = new Date(ts*1000).toLocaleString(); }
-        function genRand(){ const min = Number(document.getElementById('minNum').value); const max = Number(document.getElementById('maxNum').value); document.getElementById('randRes').innerText = Math.floor(Math.random() * (max - min + 1)) + min; }
-        function reverseTxt(){ const s = document.getElementById('revInput').value; document.getElementById('revRes').innerText = s.split("").reverse().join(""); }
-        function rmNewlines(){ document.getElementById('nlRes').value = document.getElementById('nlInput').value.replace(/(\r\n|\n|\r)/gm, " "); }
-        const MORSE_CODE = { 'A':'.-', 'B':'-...', 'C':'-.-.', 'D':'-..', 'E':'.', 'F':'..-.', 'G':'--.', 'H':'....', 'I':'..', 'J':'.---', 'K':'-.-', 'L':'.-..', 'M':'--', 'N':'-.', 'O':'---', 'P':'.--.', 'Q':'--.-', 'R':'.-.', 'S':'...', 'T':'-', 'U':'..-', 'V':'...-', 'W':'.--', 'X':'-..-', 'Y':'-.--', 'Z':'--..', '1':'.----', '2':'..---', '3':'...--', '4':'....-', '5':'.....', '6':'-....', '7':'--...', '8':'---..', '9':'----.', '0':'-----', ' ':' ' };
-        function toMorse(){ const txt = document.getElementById('morseInput').value.toUpperCase(); document.getElementById('morseRes').innerText = txt.split('').map(c => MORSE_CODE[c] || c).join(' '); }
-        function b64Enc(){ document.getElementById('b64Res').value = btoa(unescape(encodeURIComponent(document.getElementById('b64Input').value))); }
-        function b64Dec(){ document.getElementById('b64Res').value = decodeURIComponent(escape(atob(document.getElementById('b64Input').value))); }
-        let metroTimer = null; let isMetroOn = false;
-        function updateBpm(val){ document.getElementById('bpmVal').innerText = val; if(isMetroOn) { toggleMetro(); toggleMetro(); } }
-        function toggleMetro(){ const btn = document.getElementById('metroBtn'); if(isMetroOn){ clearInterval(metroTimer); isMetroOn=false; btn.innerText="시작"; btn.style.backgroundColor="var(--primary)"; } else { isMetroOn=true; btn.innerText="정지"; btn.style.backgroundColor="#f59e0b"; const bpm = document.getElementById('bpmRange').value; const ms = 60000 / bpm; metroTimer = setInterval(()=>{ btn.style.opacity = btn.style.opacity === '0.5' ? '1' : '0.5'; }, ms); } }
+        const diff = target - today;
+        const day = Math.ceil(diff / (1000 * 60 * 60 * 24));
+        
+        if (day === 0) document.getElementById('ddayRes').innerText = "D-Day";
+        else document.getElementById('ddayRes').innerText = day > 0 ? `D-${day}` : `D+${Math.abs(day)}`;
+    }
 
-    </script>
+    // [Tool 9] 색상 변환
+    function convertColor() {
+        const v = document.getElementById('colorPicker').value;
+        const r = parseInt(v.substr(1, 2), 16);
+        const g = parseInt(v.substr(3, 2), 16);
+        const b = parseInt(v.substr(5, 2), 16);
+        document.getElementById('colorRes').innerHTML = `HEX: ${v}<br>RGB: (${r}, ${g}, ${b})`;
+    }
+
+    // [Tool 10] 길이 변환
+    function convLen(type) {
+        if (type === 'cm') {
+            const cm = document.getElementById('unitCm').value;
+            document.getElementById('unitInch').value = (cm * 0.393701).toFixed(2);
+        } else {
+            const inc = document.getElementById('unitInch').value;
+            document.getElementById('unitCm').value = (inc * 2.54).toFixed(2);
+        }
+    }
+
+    // [Tool 11] 팁/더치페이
+    function calcTip() {
+        const bill = Number(document.getElementById('billAmt').value);
+        const ppl = Number(document.getElementById('peopleCnt').value);
+        if (ppl < 1) return;
+        document.getElementById('tipRes').innerText = Math.round(bill / ppl).toLocaleString() + "원";
+    }
+
+    // [Tool 12] 타임스탬프
+    // 현재 타임스탬프 1초마다 갱신
+    setInterval(() => {
+        document.getElementById('nowTs').innerText = Math.floor(Date.now() / 1000);
+    }, 1000);
+
+    function convTs() {
+        const ts = document.getElementById('tsInput').value;
+        // 입력값이 없으면 반응 안함
+        if(!ts) return;
+        document.getElementById('tsRes').innerText = new Date(ts * 1000).toLocaleString();
+    }
+
+    // [Tool 13] 랜덤 숫자
+    function genRand() {
+        const min = Number(document.getElementById('minNum').value);
+        const max = Number(document.getElementById('maxNum').value);
+        if (min > max) {
+            document.getElementById('randRes').innerText = "범위 오류";
+            return;
+        }
+        document.getElementById('randRes').innerText = Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    // [Tool 14] 텍스트 뒤집기
+    function reverseTxt() {
+        const s = document.getElementById('revInput').value;
+        document.getElementById('revRes').innerText = s.split("").reverse().join("");
+    }
+
+    // [Tool 15] 줄바꿈 제거
+    function rmNewlines() {
+        const txt = document.getElementById('nlInput').value;
+        document.getElementById('nlRes').value = txt.replace(/(\r\n|\n|\r)/gm, " ");
+    }
+
+    // [Tool 16] 모스 부호
+    const MORSE_CODE = {
+        'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.',
+        'G': '--.', 'H': '....', 'I': '..', 'J': '.---', 'K': '-.-', 'L': '.-..',
+        'M': '--', 'N': '-.', 'O': '---', 'P': '.--.', 'Q': '--.-', 'R': '.-.',
+        'S': '...', 'T': '-', 'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-',
+        'Y': '-.--', 'Z': '--..', '1': '.----', '2': '..---', '3': '...--',
+        '4': '....-', '5': '.....', '6': '-....', '7': '--...', '8': '---..',
+        '9': '----.', '0': '-----', ' ': ' '
+    };
+
+    function toMorse() {
+        const txt = document.getElementById('morseInput').value.toUpperCase();
+        document.getElementById('morseRes').innerText = txt.split('').map(c => MORSE_CODE[c] || c).join(' ');
+    }
+
+    // [Tool 17] Base64 인코딩/디코딩
+    function b64Enc() {
+        try {
+            // 한글 처리를 위해 encodeURIComponent 사용
+            const val = document.getElementById('b64Input').value;
+            document.getElementById('b64Res').value = btoa(unescape(encodeURIComponent(val)));
+        } catch (e) {
+            document.getElementById('b64Res').value = "변환 실패";
+        }
+    }
+
+    function b64Dec() {
+        try {
+            const val = document.getElementById('b64Input').value;
+            document.getElementById('b64Res').value = decodeURIComponent(escape(atob(val)));
+        } catch (e) {
+            document.getElementById('b64Res').value = "올바른 Base64 형식이 아닙니다.";
+        }
+    }
+
+    // [Tool 18] 메트로놈
+    let metroTimer = null;
+    let isMetroOn = false;
+
+    function updateBpm(val) {
+        document.getElementById('bpmVal').innerText = val;
+        // 켜져 있는 상태에서 슬라이더 조절 시 속도 즉시 반영
+        if (isMetroOn) {
+            toggleMetro(); // 껐다가
+            toggleMetro(); // 다시 켬
+        }
+    }
+
+    function toggleMetro() {
+        const btn = document.getElementById('metroBtn');
+        if (isMetroOn) {
+            clearInterval(metroTimer);
+            isMetroOn = false;
+            btn.innerText = "시작";
+            btn.style.backgroundColor = "var(--primary)";
+            btn.style.opacity = '1';
+        } else {
+            isMetroOn = true;
+            btn.innerText = "정지";
+            btn.style.backgroundColor = "#f59e0b";
+            
+            const bpm = document.getElementById('bpmRange').value;
+            const ms = 60000 / bpm;
+            
+            metroTimer = setInterval(() => {
+                // 버튼을 깜빡이게 해서 박자를 알려줌
+                btn.style.opacity = btn.style.opacity === '0.5' ? '1' : '0.5';
+            }, ms);
+        }
+    }
+
+    // [Tool 19] 자동저장 메모장
+    const memo = document.getElementById('memoPad');
+    // 저장된 내용 불러오기
+    if (memo) {
+        memo.value = localStorage.getItem('myMemo') || "";
+        // 입력할 때마다 저장
+        memo.addEventListener('input', function() {
+            localStorage.setItem('myMemo', this.value);
+        });
+    }
+</script>
 </body>
 </html>

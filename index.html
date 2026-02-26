@@ -525,16 +525,68 @@
             const r = parseInt(v.substr(1,2),16); const g = parseInt(v.substr(3,2),16); const b = parseInt(v.substr(5,2),16);
             document.getElementById('clrRes').innerText = `HEX: ${v.toUpperCase()} / RGB: (${r},${g},${b})`;
         }
-        // 21. 메트로놈
-        let mI = null; let mOn = false;
-        function updateBpm(v) { document.getElementById('bpmVal').innerText = v; if(mOn) { toggleMetro(); toggleMetro(); } }
-        function toggleMetro() {
-            const btn = document.getElementById('metroBtn');
-            if(mOn) { clearInterval(mI); mOn = false; btn.innerText="시작"; btn.style.opacity='1'; }
-            else { mOn = true; btn.innerText="정지"; const ms = 60000/document.getElementById('bpmRange').value;
-                mI = setInterval(() => { btn.style.opacity = btn.style.opacity === '0.5' ? '1' : '0.5'; }, ms);
-            }
+        // [21] 메트로놈 (소리 추가 버전)
+let mI = null; 
+let mOn = false;
+let audioCtx = null; // 오디오 컨텍스트 변수
+
+// 소리를 재생하는 함수
+function playTick() {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+
+    osc.type = 'sine'; // 부드러운 소리 (강한 소리를 원하면 'square')
+    osc.frequency.setValueAtTime(880, audioCtx.currentTime); // 주파수 (높을수록 높은 음)
+    
+    // 볼륨 설정 (0.02 ~ 0.05 사이가 소리가 작고 적당합니다)
+    gain.gain.setValueAtTime(0.03, audioCtx.currentTime); 
+    
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    osc.start();
+    // 아주 짧게 소리 내고 사라지게 함 (틱 소리)
+    gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.1);
+    osc.stop(audioCtx.currentTime + 0.1);
+}
+
+function updateBpm(v) { 
+    document.getElementById('bpmVal').innerText = v; 
+    if(mOn) { toggleMetro(); toggleMetro(); } 
+}
+
+function toggleMetro() {
+    const btn = document.getElementById('metroBtn');
+    if(mOn) { 
+        clearInterval(mI); 
+        mOn = false; 
+        btn.innerText = "시작"; // 영어 버전이면 "Start"
+        btn.style.opacity = '1'; 
+    }
+    else { 
+        mOn = true; 
+        btn.innerText = "정지"; // 영어 버전이면 "Stop"
+        
+        // 브라우저 정책상 사용자 클릭 시점에 오디오 컨텍스트 활성화 필요
+        if (audioCtx && audioCtx.state === 'suspended') {
+            audioCtx.resume();
         }
+
+        const ms = 60000 / document.getElementById('bpmRange').value;
+        
+        // 시작하자마자 첫 음 재생
+        playTick(); 
+
+        mI = setInterval(() => { 
+            // 시각적 효과 (깜빡임)
+            btn.style.opacity = btn.style.opacity === '0.5' ? '1' : '0.5'; 
+            // 소리 재생
+            playTick();
+        }, ms);
+    }
+}
     </script>
 </body>
 </html>

@@ -7,7 +7,7 @@
     <meta name="description" content="글자수 세기, QR코드 생성, 로또 번호, BMI 계산, 비밀번호 생성 등 생활과 업무에 필요한 23가지 웹 도구를 설치 없이 무료로 이용하세요.">
     <meta name="keywords" content="글자수세기, QR코드 생성기, 로또번호생성, 비밀번호생성, BMI계산기, 무료웹툴, 단위변환, 다크모드, 유틸리티, 케이스변환">
     <link rel="canonical" href="https://simsimlabs.com/daily-tools/">
- 
+
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://simsimlabs.com/daily-tools/">
     <meta property="og:title" content="데일리 툴즈 Pro | 생활 밀착형 만능 도구함">
@@ -45,7 +45,7 @@
 
         body { font-family: 'Pretendard', sans-serif; margin: 0; background-color: var(--bg-body); color: var(--text-main); display: flex; height: 100vh; overflow: hidden; transition: background-color 0.3s; }
 
-        /* 사이드바 디자인 */
+        /* 사이드바 */
         nav { width: 280px; background: var(--bg-side); border-right: 1px solid var(--border); display: flex; flex-direction: column; flex-shrink: 0; z-index: 100; transition: 0.3s; }
         .brand-area { padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); }
         .brand { font-size: 1.3rem; font-weight: 800; color: var(--primary); cursor: pointer; text-decoration: none; }
@@ -55,7 +55,7 @@
         .menu-btn:hover { background-color: var(--bg-body); color: var(--primary); }
         .menu-btn.active { background-color: var(--primary); color: white; font-weight: 600; box-shadow: var(--shadow); }
 
-        /* 메인 콘텐츠 영역 */
+        /* 메인 콘텐츠 */
         main { flex: 1; padding: 0; overflow-y: auto; scroll-behavior: smooth; }
         .content-wrapper { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
         .card { background: var(--bg-card); border-radius: 20px; padding: 35px; box-shadow: var(--shadow); border: 1px solid var(--border); margin-bottom: 24px; animation: slideUp 0.4s ease; }
@@ -64,23 +64,18 @@
         h1 { margin: 0 0 10px 0; font-size: 1.8rem; color: var(--text-main); }
         .tool-desc { color: var(--text-sub); margin-bottom: 25px; line-height: 1.6; font-size: 0.95rem; }
         
-        /* 입력 요소 공통 */
         textarea, input, select { width: 100%; padding: 14px; border: 1px solid var(--border); border-radius: 12px; background-color: var(--bg-body); color: var(--text-main); font-size: 1rem; margin-bottom: 15px; box-sizing: border-box; transition: 0.2s; }
-        textarea:focus, input:focus { border-color: var(--primary); outline: none; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
-        .btn-primary { width: 100%; padding: 16px; background-color: var(--primary); color: white; border: none; border-radius: 12px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: 0.2s; }
+        .btn-primary { width: 100%; padding: 16px; background-color: var(--primary); color: white; border: none; border-radius: 12px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: 0.2s; margin-bottom: 10px; }
         .btn-primary:hover { background-color: var(--primary-hover); transform: translateY(-1px); }
         .result-box { margin-top: 20px; padding: 20px; background: var(--bg-body); border-radius: 12px; text-align: center; font-size: 1.25rem; font-weight: bold; color: var(--text-main); border: 1px solid var(--border); word-break: break-all; }
 
-        /* 광고 배너 */
-        .ad-banner { margin-bottom: 30px; text-align: center; background: rgba(0,0,0,0.02); border-radius: 12px; min-height: 100px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .ad-banner { margin-bottom: 30px; text-align: center; min-height: 100px; display: flex; align-items: center; justify-content: center; }
 
-        /* 모바일 최적화 */
         @media (max-width: 768px) {
             body { flex-direction: column; height: auto; overflow: auto; }
             nav { width: 100%; position: sticky; top: 0; height: 60px; border-right: none; border-bottom: 1px solid var(--border); flex-direction: row; align-items: center; padding: 0 15px; justify-content: space-between; }
             .menu-list, .menu-category { display: none; }
             .content-wrapper { padding: 20px 15px; }
-            .card { padding: 25px 20px; }
         }
 
         .tool-container { display: none; }
@@ -95,35 +90,35 @@
             <button onclick="toggleTheme()" style="background:none; border:none; cursor:pointer; font-size:1.2rem;">🌓</button>
         </div>
         <div class="menu-list">
-            <div class="menu-category">Text & Content</div>
+            <div class="menu-category">Text Tools</div>
             <button class="menu-btn active" onclick="showTool(0)">📝 글자수 세기</button>
-            <button class="menu-btn" onclick="showTool(21)">🔡 케이스 변환</button>
-            <button class="menu-btn" onclick="showTool(15)">➖ 줄바꿈 제거</button>
-            <button class="menu-btn" onclick="showTool(14)">🔄 텍스트 뒤집기</button>
-            <button class="menu-btn" onclick="showTool(16)">📡 모스 부호</button>
+            <button class="menu-btn" onclick="showTool(1)">🔡 케이스 변환</button>
+            <button class="menu-btn" onclick="showTool(2)">➖ 줄바꿈 제거</button>
+            <button class="menu-btn" onclick="showTool(3)">🔄 텍스트 뒤집기</button>
+            <button class="menu-btn" onclick="showTool(4)">📡 모스 부호</button>
 
             <div class="menu-category">Math & Finance</div>
-            <button class="menu-btn" onclick="showTool(4)">💯 퍼센트 계산</button>
-            <button class="menu-btn" onclick="showTool(11)">💸 더치페이 계산</button>
-            <button class="menu-btn" onclick="showTool(10)">📏 단위 변환</button>
-            <button class="menu-btn" onclick="showTool(13)">🎲 랜덤 숫자</button>
+            <button class="menu-btn" onclick="showTool(5)">💯 퍼센트 계산</button>
+            <button class="menu-btn" onclick="showTool(6)">💸 더치페이 계산</button>
+            <button class="menu-btn" onclick="showTool(7)">📏 단위 변환</button>
+            <button class="menu-btn" onclick="showTool(8)">🎲 랜덤 숫자</button>
 
             <div class="menu-category">Life & Health</div>
-            <button class="menu-btn" onclick="showTool(2)">⚖️ BMI 계산기</button>
-            <button class="menu-btn" onclick="showTool(5)">🎂 만 나이 계산</button>
-            <button class="menu-btn" onclick="showTool(8)">📆 D-Day 계산</button>
-            <button class="menu-btn" onclick="showTool(3)">🎰 로또 번호</button>
-            <button class="menu-btn" onclick="showTool(19)">📓 빠른 메모장</button>
+            <button class="menu-btn" onclick="showTool(9)">⚖️ BMI 계산기</button>
+            <button class="menu-btn" onclick="showTool(10)">🎂 만 나이 계산</button>
+            <button class="menu-btn" onclick="showTool(11)">📆 D-Day 계산</button>
+            <button class="menu-btn" onclick="showTool(12)">🎰 로또 번호</button>
+            <button class="menu-btn" onclick="showTool(13)">📓 빠른 메모장</button>
 
-            <div class="menu-category">Utility & Dev</div>
-            <button class="menu-btn" onclick="showTool(20)">🔗 QR코드 생성</button>
-            <button class="menu-btn" onclick="showTool(22)">🕒 타이머/알람</button>
-            <button class="menu-btn" onclick="showTool(7)">⏱️ 스톱워치</button>
-            <button class="menu-btn" onclick="showTool(1)">🔐 비밀번호 생성</button>
-            <button class="menu-btn" onclick="showTool(12)">🕒 타임스탬프</button>
-            <button class="menu-btn" onclick="showTool(17)">💻 Base64 변환</button>
-            <button class="menu-btn" onclick="showTool(9)">🎨 색상 변환</button>
-            <button class="menu-btn" onclick="showTool(18)">🎵 메트로놈</button>
+            <div class="menu-category">Utilities & Dev</div>
+            <button class="menu-btn" onclick="showTool(14)">🔗 QR코드 생성</button>
+            <button class="menu-btn" onclick="showTool(15)">🕒 타이머/알람</button>
+            <button class="menu-btn" onclick="showTool(16)">⏱️ 스톱워치</button>
+            <button class="menu-btn" onclick="showTool(17)">🔐 비밀번호 생성</button>
+            <button class="menu-btn" onclick="showTool(18)">🕒 타임스탬프</button>
+            <button class="menu-btn" onclick="showTool(19)">💻 Base64 변환</button>
+            <button class="menu-btn" onclick="showTool(20)">🎨 색상 변환</button>
+            <button class="menu-btn" onclick="showTool(21)">🎵 메트로놈</button>
         </div>
     </nav>
 
@@ -138,7 +133,7 @@
             <div id="tool-0" class="tool-container active">
                 <div class="card">
                     <h1>글자수 세기 및 분석</h1>
-                    <p class="tool-desc">자기소개서, 블로그 포스팅, 레포트 작성 시 필수적인 도구입니다. 공백 포함 및 제외 글자 수를 실시간으로 계산하며 한글, 영문, 숫자의 비중을 한눈에 확인할 수 있습니다.</p>
+                    <p class="tool-desc">자기소개서나 블로그 포스팅 작성 시 필수적인 도구입니다. 공백 포함 및 제외 글자 수를 실시간으로 계산해 드립니다.</p>
                     <textarea id="txtInput" rows="10" placeholder="분석할 텍스트를 입력하세요..." oninput="countText()"></textarea>
                     <div class="result-box">
                         공백 포함: <span id="resWithSpace">0</span>자 | 공백 제외: <span id="resNoSpace">0</span>자
@@ -146,11 +141,11 @@
                 </div>
             </div>
 
-            <div id="tool-21" class="tool-container">
+            <div id="tool-1" class="tool-container">
                 <div class="card">
-                    <h1>텍스트 케이스 변환 (Case Converter)</h1>
-                    <p class="tool-desc">코딩 변수명을 짓거나 문서 서식을 정리할 때 유용합니다. 일반 문장을 camelCase, snake_case, PascalCase 등으로 즉시 변환하여 작업 효율을 높여줍니다.</p>
-                    <input type="text" id="caseInput" placeholder="변환할 영문 텍스트 입력 (ex: daily tools pro)">
+                    <h1>텍스트 케이스 변환</h1>
+                    <p class="tool-desc">영어 텍스트를 camelCase, snake_case 등 코딩 컨벤션에 맞춰 변환합니다.</p>
+                    <input type="text" id="caseInput" placeholder="영어 텍스트 입력 (ex: daily tools pro)">
                     <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
                         <button class="btn-primary" onclick="convCase('camel')">camelCase</button>
                         <button class="btn-primary" onclick="convCase('snake')">snake_case</button>
@@ -161,280 +156,384 @@
                 </div>
             </div>
 
-            <div id="tool-20" class="tool-container">
-                <div class="card">
-                    <h1>무료 QR코드 생성기</h1>
-                    <p class="tool-desc">URL 주소나 텍스트를 고화질 QR코드로 즉시 만들어 드립니다. 생성된 코드는 스캔하여 바로 이동 가능하며, 마우스 우클릭으로 저장하여 자유롭게 사용하세요.</p>
-                    <input type="text" id="qrInput" placeholder="https:// 또는 텍스트를 입력하세요">
-                    <button class="btn-primary" onclick="genQR()">QR코드 생성하기</button>
-                    <div id="qrRes" style="text-align:center; margin-top:20px;"></div>
-                </div>
-            </div>
-
-            <div id="tool-22" class="tool-container">
-                <div class="card">
-                    <h1>온라인 타이머 및 알람</h1>
-                    <p class="tool-desc">집중 시간 관리나 요리 시 간편하게 사용할 수 있는 타이머입니다. 설정한 시간이 종료되면 알람 팝업이 나타나 시간을 알려줍니다.</p>
-                    <div style="display:flex; gap:10px; align-items:center; margin-bottom:15px;">
-                        <input type="number" id="timerMin" placeholder="분" min="0" value="0">
-                        <input type="number" id="timerSec" placeholder="초" min="0" max="59" value="0">
-                    </div>
-                    <button class="btn-primary" id="timerBtn" onclick="toggleTimer()">타이머 시작</button>
-                    <div class="result-box" id="timerDisplay">00:00</div>
-                </div>
-            </div>
-
             <div id="tool-2" class="tool-container">
                 <div class="card">
-                    <h1>BMI 비만도 계산기</h1>
-                    <p class="tool-desc">신장과 체중을 이용하여 체질량 지수(BMI)를 계산합니다. 현재 나의 체중 상태가 저체중, 정상, 과체중, 비만 중 어디에 해당하는지 확인하세요.</p>
-                    <div style="display:flex; gap:10px;">
-                        <input type="number" id="bmiH" placeholder="키(cm)">
-                        <input type="number" id="bmiW" placeholder="몸무게(kg)">
-                    </div>
-                    <button class="btn-primary" onclick="calcBMI()">지수 계산하기</button>
-                    <div class="result-box" id="bmiRes">-</div>
-                </div>
-            </div>
-
-            <div id="tool-1" class="tool-container">
-                <div class="card">
-                    <h1>강력한 무작위 비밀번호 생성기</h1>
-                    <p class="tool-desc">보안을 위해 대소문자, 숫자, 특수문자를 조합한 안전한 비밀번호를 생성합니다. 브라우저에서 생성되므로 서버에 기록이 남지 않아 안전합니다.</p>
-                    <input type="range" id="pwLen" min="8" max="32" value="16" oninput="document.getElementById('pwLenTxt').innerText=this.value">
-                    <p style="text-align:center;">길이: <span id="pwLenTxt">16</span>자</p>
-                    <button class="btn-primary" onclick="genPw()">새 비밀번호 생성</button>
-                    <div class="result-box" id="pwRes">-</div>
+                    <h1>줄바꿈 제거기</h1>
+                    <p class="tool-desc">여러 줄로 된 텍스트를 한 줄로 합쳐줍니다. 논문이나 PDF 복사 시 유용합니다.</p>
+                    <textarea id="nlInput" rows="5" placeholder="텍스트 입력"></textarea>
+                    <button class="btn-primary" onclick="rmNewlines()">제거하기</button>
+                    <textarea id="nlRes" rows="5" readonly style="margin-top:15px;"></textarea>
                 </div>
             </div>
 
             <div id="tool-3" class="tool-container">
                 <div class="card">
-                    <h1>이번 주 행운의 로또 번호</h1>
-                    <p class="tool-desc">무작위 알고리즘을 사용하여 1부터 45 사이의 행운의 번호 6개를 추천해 드립니다. 재미로 확인해 보시고 좋은 결과 있으시길 바랍니다!</p>
-                    <button class="btn-primary" onclick="genLotto()">번호 조합 추출</button>
+                    <h1>텍스트 뒤집기</h1>
+                    <p class="tool-desc">입력한 문자열의 순서를 거꾸로 뒤집어 줍니다.</p>
+                    <input type="text" id="revInput" placeholder="뒤집을 텍스트 입력">
+                    <button class="btn-primary" onclick="reverseTxt()">뒤집기</button>
+                    <div class="result-box" id="revRes">-</div>
+                </div>
+            </div>
+
+            <div id="tool-4" class="tool-container">
+                <div class="card">
+                    <h1>모스 부호 변환기</h1>
+                    <p class="tool-desc">텍스트를 모스 부호로 변환합니다. (영어 및 숫자 지원)</p>
+                    <input type="text" id="morseInput" placeholder="영어 문장 또는 숫자 입력">
+                    <button class="btn-primary" onclick="toMorse()">변환하기</button>
+                    <div class="result-box" id="morseRes">-</div>
+                </div>
+            </div>
+
+            <div id="tool-5" class="tool-container">
+                <div class="card">
+                    <h1>퍼센트 계산기</h1>
+                    <p class="tool-desc">비율이나 전체 값 대비 퍼센트 수치를 간편하게 계산합니다.</p>
+                    <input type="number" id="perNum" placeholder="전체 값">
+                    <input type="number" id="perRate" placeholder="퍼센트 (%)">
+                    <button class="btn-primary" onclick="calcPer()">계산하기</button>
+                    <div class="result-box" id="perRes">-</div>
+                </div>
+            </div>
+
+            <div id="tool-6" class="tool-container">
+                <div class="card">
+                    <h1>더치페이/N빵 계산기</h1>
+                    <p class="tool-desc">총 금액을 인원수대로 정확하게 나누어 드립니다.</p>
+                    <input type="number" id="billAmt" placeholder="총 결제 금액">
+                    <input type="number" id="peopleCnt" placeholder="나눌 인원수">
+                    <button class="btn-primary" onclick="calcTip()">1인당 금액 계산</button>
+                    <div class="result-box" id="tipRes">-</div>
+                </div>
+            </div>
+
+            <div id="tool-7" class="tool-container">
+                <div class="card">
+                    <h1>길이 단위 변환 (cm ↔ inch)</h1>
+                    <p class="tool-desc">센티미터와 인치 단위를 서로 실시간으로 변환합니다.</p>
+                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px;">
+                        <div><label>cm</label><input type="number" id="unitCm" oninput="convLen('cm')"></div>
+                        <div><label>inch</label><input type="number" id="unitInch" oninput="convLen('in')"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tool-8" class="tool-container">
+                <div class="card">
+                    <h1>랜덤 숫자 추첨</h1>
+                    <p class="tool-desc">지정한 범위 내에서 무작위 숫자를 하나 추출합니다.</p>
+                    <div style="display:flex; gap:10px;">
+                        <input type="number" id="minNum" value="1">
+                        <input type="number" id="maxNum" value="100">
+                    </div>
+                    <button class="btn-primary" onclick="genRand()">랜덤 추출</button>
+                    <div class="result-box" id="randRes">-</div>
+                </div>
+            </div>
+
+            <div id="tool-9" class="tool-container">
+                <div class="card">
+                    <h1>BMI 비만도 계산기</h1>
+                    <p class="tool-desc">신장과 체중을 입력하여 건강 상태를 확인하세요.</p>
+                    <input type="number" id="bmiH" placeholder="키(cm)">
+                    <input type="number" id="bmiW" placeholder="몸무게(kg)">
+                    <button class="btn-primary" onclick="calcBMI()">지수 계산</button>
+                    <div class="result-box" id="bmiRes">-</div>
+                </div>
+            </div>
+
+            <div id="tool-10" class="tool-container">
+                <div class="card">
+                    <h1>법적 만 나이 계산기</h1>
+                    <p class="tool-desc">생년월일을 기준으로 현재 정확한 만 나이를 계산합니다.</p>
+                    <input type="date" id="birthDate">
+                    <button class="btn-primary" onclick="calcAge()">계산하기</button>
+                    <div class="result-box" id="ageRes">-</div>
+                </div>
+            </div>
+
+            <div id="tool-11" class="tool-container">
+                <div class="card">
+                    <h1>D-Day 계산기</h1>
+                    <p class="tool-desc">목표 날짜까지 남은 기간을 계산합니다.</p>
+                    <input type="date" id="ddayTarget">
+                    <button class="btn-primary" onclick="calcDDay()">날짜 확인</button>
+                    <div class="result-box" id="ddayRes">-</div>
+                </div>
+            </div>
+
+            <div id="tool-12" class="tool-container">
+                <div class="card">
+                    <h1>로또 번호 추천</h1>
+                    <p class="tool-desc">1~45 사이의 무작위 행운 번호 6개를 추출합니다.</p>
+                    <button class="btn-primary" onclick="genLotto()">번호 추출하기</button>
                     <div class="result-box" id="lottoRes">? ? ? ? ? ?</div>
+                </div>
+            </div>
+
+            <div id="tool-13" class="tool-container">
+                <div class="card">
+                    <h1>자동 저장 메모장</h1>
+                    <p class="tool-desc">입력하는 즉시 브라우저에 자동 저장됩니다.</p>
+                    <textarea id="memoPad" rows="15" placeholder="내용을 입력하세요..."></textarea>
+                </div>
+            </div>
+
+            <div id="tool-14" class="tool-container">
+                <div class="card">
+                    <h1>무료 QR코드 생성기</h1>
+                    <p class="tool-desc">URL이나 텍스트를 QR코드로 즉시 변환해 드립니다.</p>
+                    <input type="text" id="qrInput" placeholder="https:// 주소 또는 텍스트 입력">
+                    <button class="btn-primary" onclick="genQR()">생성하기</button>
+                    <div id="qrRes" style="text-align:center; margin-top:20px;"></div>
+                </div>
+            </div>
+
+            <div id="tool-15" class="tool-container">
+                <div class="card">
+                    <h1>온라인 타이머</h1>
+                    <div style="display:flex; gap:10px; align-items:center; margin-bottom:15px;">
+                        <input type="number" id="timerMin" value="0" placeholder="분">
+                        <input type="number" id="timerSec" value="0" placeholder="초">
+                    </div>
+                    <button class="btn-primary" id="timerBtn" onclick="toggleTimer()">시작</button>
+                    <div class="result-box" id="timerDisplay">00:00</div>
+                </div>
+            </div>
+
+            <div id="tool-16" class="tool-container">
+                <div class="card">
+                    <h1>스톱워치</h1>
+                    <div class="result-box" id="swDisplay" style="font-size:3rem">00:00:00</div>
+                    <div style="display:flex; gap:10px; margin-top:20px;">
+                        <button class="btn-primary" id="swBtn" onclick="toggleStopwatch()">시작</button>
+                        <button class="btn-primary" onclick="resetStopwatch()" style="background:#ef4444">리셋</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tool-17" class="tool-container">
+                <div class="card">
+                    <h1>보안 비밀번호 생성</h1>
+                    <input type="range" id="pwLen" min="8" max="32" value="16" oninput="document.getElementById('pwLenTxt').innerText=this.value">
+                    <p>길이: <span id="pwLenTxt">16</span>자</p>
+                    <button class="btn-primary" onclick="genPw()">비밀번호 생성</button>
+                    <div class="result-box" id="pwRes">-</div>
+                </div>
+            </div>
+
+            <div id="tool-18" class="tool-container">
+                <div class="card">
+                    <h1>Unix 타임스탬프 변환</h1>
+                    <p>현재 스탬프: <span id="curTs"></span></p>
+                    <input type="number" id="tsIn" placeholder="타임스탬프 입력">
+                    <button class="btn-primary" onclick="convTs()">날짜로 변환</button>
+                    <div class="result-box" id="tsRes">-</div>
                 </div>
             </div>
 
             <div id="tool-19" class="tool-container">
                 <div class="card">
-                    <h1>자동 저장 빠른 메모장</h1>
-                    <p class="tool-desc">입력하는 즉시 브라우저에 자동 저장되는 메모장입니다. 중요한 아이디어나 임시 텍스트를 빠르게 기록하세요. 브라우저를 닫았다가 다시 열어도 내용이 유지됩니다.</p>
-                    <textarea id="memoPad" rows="15" placeholder="내용을 입력하세요..."></textarea>
+                    <h1>Base64 인코더/디코더</h1>
+                    <textarea id="b64In" rows="4" placeholder="텍스트 입력"></textarea>
+                    <div style="display:flex; gap:10px;">
+                        <button class="btn-primary" onclick="b64Enc()">인코딩</button>
+                        <button class="btn-primary" onclick="b64Dec()" style="background:#64748b">디코딩</button>
+                    </div>
+                    <textarea id="b64Out" rows="4" readonly style="margin-top:15px;"></textarea>
                 </div>
             </div>
 
-            <div id="tool-4" class="tool-container"><div class="card"><h1>퍼센트 계산기</h1><p class="tool-desc">비율 계산, 증감율 등을 간편하게 계산합니다.</p><input type="number" id="perNum" placeholder="전체 값"><input type="number" id="perRate" placeholder="퍼센트 (%)"><button class="btn-primary" onclick="calcPer()">계산</button><div class="result-box" id="perRes">-</div></div></div>
-             <div id="tool-5" class="tool-container"><div class="card"><h1>만 나이 계산기</h1><p class="tool-desc">생년월일을 입력하여 정확한 법적 만 나이를 계산합니다.</p><input type="date" id="birthDate"><button class="btn-primary" onclick="calcAge()">계산</button><div class="result-box" id="ageRes">-</div></div></div>
-             <div id="tool-10" class="tool-container"><div class="card"><h1>길이/단위 변환기</h1><p class="tool-desc">cm와 inch 단위를 서로 변환합니다.</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div><label>cm</label><input type="number" id="unitCm" oninput="convLen('cm')"></div><div><label>inch</label><input type="number" id="unitInch" oninput="convLen('in')"></div></div></div></div>
-             <div id="tool-7" class="tool-container"><div class="card"><h1>온라인 스톱워치</h1><p class="tool-desc">기록 측정을 위한 심플한 스톱워치입니다.</p><div class="result-box" id="timeDisplay" style="font-size:3rem">00:00:00</div><div style="display:flex;gap:10px;margin-top:20px"><button class="btn-primary" id="stopwatchBtn" onclick="toggleStopwatch()">시작</button><button class="btn-primary" onclick="resetStopwatch()" style="background:#ef4444">리셋</button></div></div></div>
-             <div id="tool-8" class="tool-container"><div class="card"><h1>D-Day 계산기</h1><p class="tool-desc">목표 날짜까지 남은 기간을 계산합니다.</p><input type="date" id="ddayTarget"><button class="btn-primary" onclick="calcDDay()">확인</button><div class="result-box" id="ddayRes">-</div></div></div>
-             <div id="tool-11" class="tool-container"><div class="card"><h1>더치페이 계산기</h1><p class="tool-desc">회식비나 모임 비용을 인원수대로 나눕니다.</p><input type="number" id="billAmt" placeholder="총 결제 금액"><input type="number" id="peopleCnt" placeholder="나눌 인원수"><button class="btn-primary" onclick="calcTip()">1인당 금액 계산</button><div class="result-box" id="tipRes">-</div></div></div>
-             <div id="tool-13" class="tool-container"><div class="card"><h1>랜덤 숫자 추첨</h1><p class="tool-desc">범위 내에서 무작위 숫자를 하나 뽑습니다.</p><div style="display:flex;gap:10px"><input type="number" id="minNum" value="1"><input type="number" id="maxNum" value="100"></div><button class="btn-primary" onclick="genRand()">랜덤 추출</button><div class="result-box" id="randRes">-</div></div></div>
-             <div id="tool-15" class="tool-container"><div class="card"><h1>줄바꿈 제거기</h1><p class="tool-desc">여러 줄로 된 텍스트를 한 줄로 합칩니다. 논문이나 문서 복사 시 유용합니다.</p><textarea id="nlInput" rows="5" placeholder="변환할 텍스트 입력"></textarea><button class="btn-primary" onclick="rmNewlines()">줄바꿈 제거</button><textarea id="nlRes" rows="5" style="margin-top:15px"></textarea></div></div>
+            <div id="tool-20" class="tool-container">
+                <div class="card">
+                    <h1>HEX/RGB 색상 변환</h1>
+                    <input type="color" id="clrIn" style="height:60px;" oninput="convClr()">
+                    <div class="result-box" id="clrRes">HEX: #000000</div>
+                </div>
+            </div>
 
-            <div class="card" style="background:none; border:none; box-shadow:none; padding: 0;">
-                <h2 style="font-weight: 800;">편리한 웹 서비스를 제공하는 데일리 툴즈 Pro</h2>
-                <p>데일리 툴즈 Pro는 현대인의 생산성을 높이기 위해 개발된 <strong>올인원 유틸리티 플랫폼</strong>입니다. 복잡한 계산기나 변환 프로그램을 일일이 설치할 필요 없이, 웹 브라우저에서 모든 것을 해결하세요.</p>
-                <p>우리는 사용자의 <strong>개인정보 보호</strong>를 최우선으로 생각합니다. 글자수 세기, 메모장, 비밀번호 생성 등 모든 기능은 외부 서버로 데이터를 전송하지 않고 사용자의 브라우저 내에서 즉시 처리됩니다. 보안 걱정 없이 안심하고 사용하세요.</p>
+            <div id="tool-21" class="tool-container">
+                <div class="card">
+                    <h1>온라인 메트로놈</h1>
+                    <p>BPM: <span id="bpmVal">120</span></p>
+                    <input type="range" id="bpmRange" min="40" max="220" value="120" oninput="updateBpm(this.value)">
+                    <button class="btn-primary" id="metroBtn" onclick="toggleMetro()">시작</button>
+                </div>
             </div>
 
             <footer>
                 <p>&copy; 2024 SimSim Labs. All rights reserved.</p>
-                <p>
-                    <a href="https://simsimlabs.com/privacy.html">개인정보처리방침</a> | 
-                    <a href="https://forms.gle/1arMG4Y5RodkcpEY7" target="_blank">문의 및 제안</a>
-                </p>
+                <p><a href="/privacy.html">개인정보처리방침</a> | <a href="https://forms.gle/1arMG4Y5RodkcpEY7" target="_blank">도구 제안 및 문의</a></p>
             </footer>
         </div>
     </main>
 
     <script>
-        // === UI & 테마 로직 ===
+        // === UI 로직 ===
         function toggleTheme() {
             document.body.classList.toggle('dark-mode');
-            localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+            localStorage.setItem('tools-theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
         }
-        if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark-mode');
+        if (localStorage.getItem('tools-theme') === 'dark') document.body.classList.add('dark-mode');
 
         function showTool(idx) {
             document.querySelectorAll('.tool-container').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`tool-${idx}`).classList.add('active');
             
-            const target = document.getElementById(`tool-${idx}`);
-            if(target) target.classList.add('active');
-
-            const menuBtns = document.querySelectorAll('.menu-btn');
-            menuBtns.forEach(btn => {
-                if(btn.getAttribute('onclick').includes(idx)) btn.classList.add('active');
-            });
-
-            if (window.innerWidth <= 768) {
-                document.querySelector('main').scrollTo(0,0);
-            }
+            const btns = document.querySelectorAll('.menu-btn');
+            btns.forEach(b => { if(b.getAttribute('onclick').includes(`(${idx})`)) b.classList.add('active'); });
+            
+            if (window.innerWidth <= 768) document.querySelector('main').scrollTop = 0;
         }
 
-        // === 도구별 자바스크립트 로직 ===
-
-        // [0] 글자수 세기
+        // === 도구 로직 ===
+        // 0. 글자수
         function countText() {
             const t = document.getElementById('txtInput').value;
             document.getElementById('resWithSpace').innerText = t.length;
             document.getElementById('resNoSpace').innerText = t.replace(/\s/g, '').length;
         }
-
-        // [20] QR 생성
-        function genQR() {
-            const val = document.getElementById('qrInput').value;
-            if(!val) return alert('내용을 입력하세요.');
-            const url = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(val)}`;
-            document.getElementById('qrRes').innerHTML = `<img src="${url}" alt="QR" style="border:5px solid white; box-shadow:var(--shadow);">`;
-        }
-
-        // [21] 케이스 변환
+        // 1. 케이스 변환
         function convCase(type) {
-            const input = document.getElementById('caseInput').value;
-            if(!input) return;
-            let words = input.toLowerCase().split(/[^a-zA-Z0-9]/).filter(x => x.length > 0);
+            const val = document.getElementById('caseInput').value;
+            if(!val) return;
+            let words = val.toLowerCase().split(/[^a-zA-Z0-9]/).filter(x => x.length > 0);
             let res = "";
-            if(type === 'camel') res = words[0] + words.slice(1).map(w => w.charAt(0).toUpperCase() + w.slice(1)).join('');
-            else if(type === 'snake') res = words.join('_');
-            else if(type === 'pascal') res = words.map(w => w.charAt(0).toUpperCase() + w.slice(1)).join('');
-            else if(type === 'upper') res = words.join('_').toUpperCase();
+            if(type==='camel') res = words[0] + words.slice(1).map(w => w.charAt(0).toUpperCase() + w.slice(1)).join('');
+            else if(type==='snake') res = words.join('_');
+            else if(type==='pascal') res = words.map(w => w.charAt(0).toUpperCase() + w.slice(1)).join('');
+            else if(type==='upper') res = words.join('_').toUpperCase();
             document.getElementById('caseRes').innerText = res;
         }
-
-        // [22] 타이머
-        let timerInterval = null;
-        function toggleTimer() {
-            const btn = document.getElementById('timerBtn');
-            const display = document.getElementById('timerDisplay');
-            if(timerInterval) {
-                clearInterval(timerInterval);
-                timerInterval = null;
-                btn.innerText = "타이머 시작";
-                return;
-            }
-            let total = (parseInt(document.getElementById('timerMin').value) || 0) * 60 + (parseInt(document.getElementById('timerSec').value) || 0);
-            if(total <= 0) return;
-            btn.innerText = "중지";
-            timerInterval = setInterval(() => {
-                total--;
-                let m = String(Math.floor(total / 60)).padStart(2, '0');
-                let s = String(total % 60).padStart(2, '0');
-                display.innerText = `${m}:${s}`;
-                if(total <= 0) {
-                    clearInterval(timerInterval);
-                    timerInterval = null;
-                    btn.innerText = "타이머 시작";
-                    alert("시간이 종료되었습니다!");
-                }
-            }, 1000);
+        // 2. 줄바꿈 제거
+        function rmNewlines() { document.getElementById('nlRes').value = document.getElementById('nlInput').value.replace(/(\r\n|\n|\r)/gm, " "); }
+        // 3. 텍스트 뒤집기
+        function reverseTxt() { document.getElementById('revRes').innerText = document.getElementById('revInput').value.split("").reverse().join(""); }
+        // 4. 모스부호
+        const M_MAP = {'A':'.-','B':'-...','C':'-.-.','D':'-..','E':'.','F':'..-.','G':'--.','H':'....','I':'..','J':'.---','K':'-.-','L':'.-..','M':'--','N':'-.','O':'---','P':'.--.','Q':'--.-','R':'.-.','S':'...','T':'-','U':'..-','V':'...-','W':'.--','X':'-..-','Y':'-.--','Z':'--..','1':'.----','2':'..---','3':'...--','4':'....-','5':'.....','6':'-....','7':'--...','8':'---..','9':'----.','0':'-----',' ':'/'};
+        function toMorse() {
+            let val = document.getElementById('morseInput').value.toUpperCase();
+            document.getElementById('morseRes').innerText = val.split('').map(c => M_MAP[c] || c).join(' ');
         }
-
-        // [1] 비밀번호
-        function genPw() {
-            const c = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%";
-            let r = "";
-            const l = document.getElementById('pwLen').value;
-            for(let i=0; i<l; i++) r += c.charAt(Math.floor(Math.random()*c.length));
-            document.getElementById('pwRes').innerText = r;
-        }
-
-        // [2] BMI
-        function calcBMI() {
-            const h = document.getElementById('bmiH').value / 100;
-            const w = document.getElementById('bmiW').value;
-            if(!h || !w) return;
-            const bmi = (w / (h * h)).toFixed(2);
-            let s = bmi < 18.5 ? "저체중" : bmi < 23 ? "정상" : bmi < 25 ? "과체중" : "비만";
-            document.getElementById('bmiRes').innerText = `${bmi} (${s})`;
-        }
-
-        // [3] 로또
-        function genLotto() {
-            let s = new Set();
-            while(s.size < 6) s.add(Math.floor(Math.random()*45)+1);
-            document.getElementById('lottoRes').innerText = [...s].sort((a,b)=>a-b).join('  ');
-        }
-
-        // [4] 퍼센트
-        function calcPer() {
-            const n = document.getElementById('perNum').value;
-            const r = document.getElementById('perRate').value;
+        // 5. 퍼센트
+        function calcPer() { 
+            const n = document.getElementById('perNum').value; const r = document.getElementById('perRate').value;
             if(n && r) document.getElementById('perRes').innerText = (n * (r/100)).toLocaleString();
         }
-
-        // [5] 만 나이
+        // 6. 더치페이
+        function calcTip() {
+            const b = document.getElementById('billAmt').value; const p = document.getElementById('peopleCnt').value;
+            if(b && p > 0) document.getElementById('tipRes').innerText = Math.round(b/p).toLocaleString() + "원";
+        }
+        // 7. 단위변환
+        function convLen(type) {
+            const c = document.getElementById('unitCm'); const i = document.getElementById('unitInch');
+            if(type==='cm') i.value = (c.value * 0.3937).toFixed(2);
+            else c.value = (i.value * 2.54).toFixed(2);
+        }
+        // 8. 랜덤숫자
+        function genRand() {
+            const min = Number(document.getElementById('minNum').value); const max = Number(document.getElementById('maxNum').value);
+            document.getElementById('randRes').innerText = Math.floor(Math.random()*(max-min+1))+min;
+        }
+        // 9. BMI
+        function calcBMI() {
+            const h = document.getElementById('bmiH').value / 100; const w = document.getElementById('bmiW').value;
+            if(h && w) {
+                const bmi = (w / (h*h)).toFixed(2);
+                let s = bmi < 18.5 ? "저체중" : bmi < 23 ? "정상" : bmi < 25 ? "과체중" : "비만";
+                document.getElementById('bmiRes').innerText = `${bmi} (${s})`;
+            }
+        }
+        // 10. 나이
         function calcAge() {
-            const b = new Date(document.getElementById('birthDate').value);
-            const t = new Date();
+            const b = new Date(document.getElementById('birthDate').value); const t = new Date();
             if(!b.getTime()) return;
             let age = t.getFullYear() - b.getFullYear();
             const m = t.getMonth() - b.getMonth();
             if(m < 0 || (m === 0 && t.getDate() < b.getDate())) age--;
             document.getElementById('ageRes').innerText = `만 ${age}세`;
         }
-
-        // [7] 스톱워치
-        let swTimer = null; let swSec = 0;
-        function toggleStopwatch() {
-            const btn = document.getElementById('stopwatchBtn');
-            if(swTimer) { clearInterval(swTimer); swTimer = null; btn.innerText = "시작"; }
-            else {
-                swTimer = setInterval(() => {
-                    swSec++;
-                    const h = String(Math.floor(swSec/3600)).padStart(2,'0');
-                    const m = String(Math.floor((swSec%3600)/60)).padStart(2,'0');
-                    const s = String(swSec%60).padStart(2,'0');
-                    document.getElementById('timeDisplay').innerText = `${h}:${m}:${s}`;
-                }, 1000);
-                btn.innerText = "정지";
-            }
-        }
-        function resetStopwatch() { clearInterval(swTimer); swTimer = null; swSec = 0; document.getElementById('timeDisplay').innerText = "00:00:00"; document.getElementById('stopwatchBtn').innerText = "시작"; }
-
-        // [8] D-Day
+        // 11. D-Day
         function calcDDay() {
-            const t = new Date(document.getElementById('ddayTarget').value);
-            const n = new Date(); n.setHours(0,0,0,0);
+            const t = new Date(document.getElementById('ddayTarget').value); const n = new Date(); n.setHours(0,0,0,0);
             if(!t.getTime()) return;
             const d = Math.ceil((t - n) / (1000*60*60*24));
-            document.getElementById('ddayRes').innerText = d === 0 ? "Today" : d > 0 ? `D-${d}` : `D+${Math.abs(d)}`;
+            document.getElementById('ddayRes').innerText = d === 0 ? "D-Day" : d > 0 ? `D-${d}` : `D+${Math.abs(d)}`;
         }
-
-        // [10] 단위변환
-        function convLen(type) {
-            const c = document.getElementById('unitCm'); const i = document.getElementById('unitInch');
-            if(type==='cm') i.value = (c.value * 0.3937).toFixed(2);
-            else c.value = (i.value * 2.54).toFixed(2);
+        // 12. 로또
+        function genLotto() {
+            let s = new Set(); while(s.size < 6) s.add(Math.floor(Math.random()*45)+1);
+            document.getElementById('lottoRes').innerText = [...s].sort((a,b)=>a-b).join(' ');
         }
-
-        // [11] 더치페이
-        function calcTip() {
-            const b = document.getElementById('billAmt').value; const p = document.getElementById('peopleCnt').value;
-            if(b && p > 0) document.getElementById('tipRes').innerText = Math.round(b/p).toLocaleString() + "원";
-        }
-
-        // [13] 랜덤숫자
-        function genRand() {
-            const min = Number(document.getElementById('minNum').value);
-            const max = Number(document.getElementById('maxNum').value);
-            document.getElementById('randRes').innerText = Math.floor(Math.random()*(max-min+1))+min;
-        }
-
-        // [15] 줄바꿈 제거
-        function rmNewlines() {
-            const i = document.getElementById('nlInput').value;
-            document.getElementById('nlRes').value = i.replace(/(\r\n|\n|\r)/gm, " ");
-        }
-
-        // 자동저장 메모장
+        // 13. 메모장
         const memo = document.getElementById('memoPad');
-        if(memo) {
-            memo.value = localStorage.getItem('dailyMemo') || "";
-            memo.oninput = () => localStorage.setItem('dailyMemo', memo.value);
+        if(memo) { memo.value = localStorage.getItem('dailyMemoV2') || ""; memo.oninput = () => localStorage.setItem('dailyMemoV2', memo.value); }
+        // 14. QR
+        function genQR() {
+            const v = document.getElementById('qrInput').value; if(!v) return;
+            document.getElementById('qrRes').innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(v)}" style="border:10px solid white; box-shadow:var(--shadow);">`;
+        }
+        // 15. 타이머
+        let tInt = null;
+        function toggleTimer() {
+            const btn = document.getElementById('timerBtn'); const d = document.getElementById('timerDisplay');
+            if(tInt) { clearInterval(tInt); tInt = null; btn.innerText = "시작"; return; }
+            let s_total = (parseInt(document.getElementById('timerMin').value)||0)*60 + (parseInt(document.getElementById('timerSec').value)||0);
+            if(s_total<=0) return;
+            btn.innerText = "중지";
+            tInt = setInterval(() => {
+                s_total--;
+                d.innerText = `${String(Math.floor(s_total/60)).padStart(2,'0')}:${String(s_total%60).padStart(2,'0')}`;
+                if(s_total<=0) { clearInterval(tInt); tInt=null; btn.innerText="시작"; alert("시간 종료!"); }
+            }, 1000);
+        }
+        // 16. 스톱워치
+        let swI = null; let swS = 0;
+        function toggleStopwatch() {
+            const btn = document.getElementById('swBtn');
+            if(swI) { clearInterval(swI); swI = null; btn.innerText = "시작"; }
+            else {
+                swI = setInterval(() => { swS++;
+                    const h = String(Math.floor(swS/3600)).padStart(2,'0'); const m = String(Math.floor((swS%3600)/60)).padStart(2,'0'); const s = String(swS%60).padStart(2,'0');
+                    document.getElementById('swDisplay').innerText = `${h}:${m}:${s}`;
+                }, 1000);
+                btn.innerText = "중지";
+            }
+        }
+        function resetStopwatch() { clearInterval(swI); swI = null; swS = 0; document.getElementById('swDisplay').innerText = "00:00:00"; document.getElementById('swBtn').innerText = "시작"; }
+        // 17. 비밀번호
+        function genPw() {
+            const c = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%"; let r = "";
+            for(let i=0; i<document.getElementById('pwLen').value; i++) r += c.charAt(Math.floor(Math.random()*c.length));
+            document.getElementById('pwRes').innerText = r;
+        }
+        // 18. 타임스탬프
+        setInterval(() => { document.getElementById('curTs').innerText = Math.floor(Date.now()/1000); }, 1000);
+        function convTs() { 
+            const ts = document.getElementById('tsIn').value; 
+            if(ts) document.getElementById('tsRes').innerText = new Date(ts*1000).toLocaleString();
+        }
+        // 19. Base64
+        function b64Enc() { document.getElementById('b64Out').value = btoa(unescape(encodeURIComponent(document.getElementById('b64In').value))); }
+        function b64Dec() { try { document.getElementById('b64Out').value = decodeURIComponent(escape(atob(document.getElementById('b64In').value))); } catch(e){ alert('실패'); } }
+        // 20. 색상
+        function convClr() { 
+            const v = document.getElementById('clrIn').value;
+            const r = parseInt(v.substr(1,2),16); const g = parseInt(v.substr(3,2),16); const b = parseInt(v.substr(5,2),16);
+            document.getElementById('clrRes').innerText = `HEX: ${v.toUpperCase()} / RGB: (${r},${g},${b})`;
+        }
+        // 21. 메트로놈
+        let mI = null; let mOn = false;
+        function updateBpm(v) { document.getElementById('bpmVal').innerText = v; if(mOn) { toggleMetro(); toggleMetro(); } }
+        function toggleMetro() {
+            const btn = document.getElementById('metroBtn');
+            if(mOn) { clearInterval(mI); mOn = false; btn.innerText="시작"; btn.style.opacity='1'; }
+            else { mOn = true; btn.innerText="정지"; const ms = 60000/document.getElementById('bpmRange').value;
+                mI = setInterval(() => { btn.style.opacity = btn.style.opacity === '0.5' ? '1' : '0.5'; }, ms);
+            }
         }
     </script>
 </body>

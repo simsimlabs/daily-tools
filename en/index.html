@@ -3,24 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Daily Tools Pro - Free Online Essential Utility Tools</title>
-    <meta name="description" content="20 free online web tools without installation. Word counter, Password generator, BMI calculator, Lottery numbers, Unit converter, and more.">
-    <meta name="keywords" content="word counter, password generator, bmi calculator, lottery number, online tools, dark mode, unit converter">
+    <title>Daily Tools Pro - 22+ Essential Free Online Web Utilities</title>
+    <meta name="description" content="Access 22+ essential web tools instantly. Word counter, QR code generator, BMI calculator, password generator, metronome with sound, and more. Free to use with no installation.">
+    <meta name="keywords" content="word counter, QR code generator, lotto number generator, password generator, BMI calculator, metronome online, free web tools, unit converter, dark mode">
     <link rel="canonical" href="https://simsimlabs.com/daily-tools/en/">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://simsimlabs.com/daily-tools/en/">
-    <meta property="og:title" content="Daily Tools Pro - All-in-One Online Tools">
-    <meta property="og:description" content="From word counting to lottery numbers! 20 essential web tools available instantly in your browser.">
-    <meta property="og:image" content="https://simsimlabs.com/daily-tools/en/thumbnail.jpg">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2261846676525942" crossorigin="anonymous"></script>
+    <meta property="og:title" content="Daily Tools Pro | Your All-in-One Online Utility Box">
+    <meta property="og:description" content="22+ professional tools to solve your daily tasks directly in the browser. Fast, secure, and completely free.">
+    <meta property="og:image" content="https://simsimlabs.com/daily-tools/en/thumbnail.webp">
 
     <link rel="alternate" hreflang="ko" href="https://simsimlabs.com/daily-tools/" />
     <link rel="alternate" hreflang="en" href="https://simsimlabs.com/daily-tools/en/" />
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+
     <style>
-        /* === Styles (Same as original) === */
         :root {
             --primary: #3b82f6;
             --primary-hover: #2563eb;
@@ -45,701 +43,493 @@
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
         }
 
-        body {
-            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            display: flex;
-            height: 100vh;
-            overflow: hidden;
-            transition: background-color 0.3s, color 0.3s;
-        }
+        body { font-family: 'Pretendard', sans-serif; margin: 0; background-color: var(--bg-body); color: var(--text-main); display: flex; height: 100vh; overflow: hidden; transition: background-color 0.3s; }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-
-        /* Layout */
-        nav {
-            width: 280px;
-            background: var(--bg-side);
-            border-right: 1px solid var(--border);
-            display: flex;
-            flex-direction: column;
-            flex-shrink: 0;
-            transition: 0.3s;
-        }
+        /* Sidebar Design */
+        nav { width: 280px; background: var(--bg-side); border-right: 1px solid var(--border); display: flex; flex-direction: column; flex-shrink: 0; z-index: 100; transition: 0.3s; }
         .brand-area { padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); }
-        .brand { font-size: 1.4rem; font-weight: 800; color: var(--primary); }
-        .theme-toggle { background: none; border: 1px solid var(--border); border-radius: 8px; padding: 8px; cursor: pointer; font-size: 1.2rem; color: var(--text-main); }
+        .brand { font-size: 1.3rem; font-weight: 800; color: var(--primary); cursor: pointer; text-decoration: none; }
         .menu-list { padding: 15px; overflow-y: auto; flex: 1; }
-        .menu-btn { width: 100%; padding: 12px 16px; margin-bottom: 5px; border: none; background: none; text-align: left; cursor: pointer; border-radius: 8px; color: var(--text-sub); font-size: 0.95rem; font-weight: 500; transition: 0.2s; }
+        .menu-category { font-size: 0.75rem; font-weight: 700; color: var(--text-sub); text-transform: uppercase; margin: 20px 0 10px 10px; letter-spacing: 1px; }
+        .menu-btn { width: 100%; padding: 10px 14px; margin-bottom: 4px; border: none; background: none; text-align: left; cursor: pointer; border-radius: 8px; color: var(--text-main); font-size: 0.9rem; transition: 0.2s; display: flex; align-items: center; gap: 10px; }
         .menu-btn:hover { background-color: var(--bg-body); color: var(--primary); }
         .menu-btn.active { background-color: var(--primary); color: white; font-weight: 600; box-shadow: var(--shadow); }
 
-        main { flex: 1; padding: 0; overflow-y: auto; position: relative; }
-        .content-wrapper { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        /* Main Content */
+        main { flex: 1; padding: 0; overflow-y: auto; scroll-behavior: smooth; }
+        .content-wrapper { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+        .card { background: var(--bg-card); border-radius: 20px; padding: 35px; box-shadow: var(--shadow); border: 1px solid var(--border); margin-bottom: 24px; animation: slideUp 0.4s ease; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        h1 { margin: 0 0 10px 0; font-size: 1.8rem; color: var(--text-main); }
+        .tool-desc { color: var(--text-sub); margin-bottom: 25px; line-height: 1.6; font-size: 0.95rem; }
+        
+        textarea, input, select { width: 100%; padding: 14px; border: 1px solid var(--border); border-radius: 12px; background-color: var(--bg-body); color: var(--text-main); font-size: 1rem; margin-bottom: 15px; box-sizing: border-box; transition: 0.2s; }
+        textarea:focus, input:focus { border-color: var(--primary); outline: none; }
+        .btn-primary { width: 100%; padding: 16px; background-color: var(--primary); color: white; border: none; border-radius: 12px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: 0.2s; margin-bottom: 10px; }
+        .btn-primary:hover { background-color: var(--primary-hover); transform: translateY(-1px); }
+        .result-box { margin-top: 20px; padding: 20px; background: var(--bg-body); border-radius: 12px; text-align: center; font-size: 1.25rem; font-weight: bold; color: var(--text-main); border: 1px solid var(--border); word-break: break-all; }
+
+        .ad-banner { margin-bottom: 30px; text-align: center; min-height: 100px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 
         @media (max-width: 768px) {
             body { flex-direction: column; height: auto; overflow: auto; }
-            nav { width: 100%; height: auto; position: sticky; top: 0; z-index: 100; border-right: none; border-bottom: 1px solid var(--border); flex-direction: row; align-items: center; padding: 0 10px; box-sizing: border-box; }
-            .brand-area { border: none; padding: 10px; }
-            .brand { font-size: 1.2rem; margin-right: 10px; }
-            .menu-list { display: flex; flex-direction: row; padding: 10px 0; overflow-x: auto; white-space: nowrap; flex: 1; gap: 8px; }
-            .menu-list::-webkit-scrollbar { display: none; }
-            .menu-btn { width: auto; margin: 0; padding: 8px 14px; font-size: 0.9rem; background: var(--bg-body); border: 1px solid var(--border); }
-            .menu-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
-            main { overflow: visible; }
+            nav { width: 100%; position: sticky; top: 0; height: 60px; border-right: none; border-bottom: 1px solid var(--border); flex-direction: row; align-items: center; padding: 0 15px; justify-content: space-between; }
+            .menu-list, .menu-category { display: none; }
             .content-wrapper { padding: 20px 15px; }
         }
 
-        .tool-container { display: none; animation: fadeIn 0.3s; }
+        .tool-container { display: none; }
         .tool-container.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        .card { background: var(--bg-card); border-radius: 16px; padding: 30px; box-shadow: var(--shadow); border: 1px solid var(--border); margin-bottom: 24px; }
-        h1 { margin: 0 0 24px 0; font-size: 1.6rem; color: var(--text-main); }
-        h2 { font-size: 1.2rem; margin-top: 0; color: var(--text-main); }
-        p, li { line-height: 1.7; color: var(--text-sub); }
-        input, textarea, select { width: 100%; padding: 14px; border: 1px solid var(--border); border-radius: 10px; background-color: var(--bg-body); color: var(--text-main); font-size: 1rem; margin-bottom: 15px; box-sizing: border-box; }
-        input:focus, textarea:focus, select:focus { outline: 2px solid var(--primary); border-color: transparent; }
-        .btn-primary { width: 100%; padding: 16px; background-color: var(--primary); color: white; border: none; border-radius: 10px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: 0.2s; }
-        .btn-primary:hover { background-color: var(--primary-hover); transform: translateY(-1px); }
-        .result-box { margin-top: 20px; padding: 20px; background: var(--bg-body); border-radius: 10px; text-align: center; font-size: 1.2rem; font-weight: bold; color: var(--text-main); border: 1px solid var(--border); word-break: break-all; }
-        
-        .ad-space { background-color: var(--bg-body); border: 2px dashed var(--border); text-align: center; color: var(--text-sub); padding: 40px 20px; margin-bottom: 40px; border-radius: 12px; font-size: 0.9rem; }
-        .info-section { background: var(--bg-card); padding: 24px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 40px; }
-
-        /* SEO Footer */
-        .seo-footer { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
-        .seo-footer h3 { color: var(--text-main); margin-bottom: 10px; }
-        .seo-footer p { font-size: 0.95rem; margin-bottom: 20px; }
-
-        /* Footer */
-        footer { text-align: center; padding: 40px 20px; color: var(--text-sub); font-size: 0.9rem; border-top: 1px solid var(--border); margin-top: 40px; }
-        footer a { color: var(--text-sub); text-decoration: none; margin: 0 10px; cursor: pointer; }
-        footer a:hover { color: var(--primary); text-decoration: underline; }
-
-        /* Modal */
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center; }
-        .modal-overlay.open { display: flex; }
-        .modal-box { background: var(--bg-card); padding: 30px; border-radius: 16px; width: 90%; max-width: 500px; max-height: 80vh; overflow-y: auto; position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
-        .modal-close { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; background: none; border: none; cursor: pointer; color: var(--text-sub); }
     </style>
 </head>
 <body>
 
-    <nav>
+    <nav id="sidebar">
         <div class="brand-area">
-            <div class="brand">Daily Tools Pro</div>
-            <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">🌓</button>
+            <a href="./" class="brand">Daily Tools Pro</a>
+            <button onclick="toggleTheme()" style="background:none; border:none; cursor:pointer; font-size:1.2rem;">🌓</button>
         </div>
         <div class="menu-list">
+            <div class="menu-category">Text Tools</div>
             <button class="menu-btn active" onclick="showTool(0)">📝 Word Counter</button>
-            <button class="menu-btn" onclick="showTool(1)">🔐 Password Generator</button>
-            <button class="menu-btn" onclick="showTool(2)">⚖️ BMI Calculator</button>
-            <button class="menu-btn" onclick="showTool(3)">🎰 Lottery Number</button>
-            <button class="menu-btn" onclick="showTool(4)">💯 Percentage Calc</button>
-            <button class="menu-btn" onclick="showTool(5)">🎂 Age Calculator</button>
-            <button class="menu-btn" onclick="showTool(6)">🔠 Case Converter</button>
-            <button class="menu-btn" onclick="showTool(7)">⏱️ Stopwatch</button>
-            <button class="menu-btn" onclick="showTool(8)">📆 D-Day Calculator</button>
-            <button class="menu-btn" onclick="showTool(9)">🎨 Color Converter</button>
-            <button class="menu-btn" onclick="showTool(10)">📏 Unit Converter</button>
-            <button class="menu-btn" onclick="showTool(11)">💸 Tip & Split Bill</button>
-            <button class="menu-btn" onclick="showTool(12)">🕒 Timestamp</button>
-            <button class="menu-btn" onclick="showTool(13)">🎲 Random Number</button>
-            <button class="menu-btn" onclick="showTool(14)">🔄 Reverse Text</button>
-            <button class="menu-btn" onclick="showTool(15)">➖ Remove Line Breaks</button>
-            <button class="menu-btn" onclick="showTool(16)">📡 Morse Code</button>
-            <button class="menu-btn" onclick="showTool(17)">💻 Base64 Converter</button>
-            <button class="menu-btn" onclick="showTool(18)">🎵 Metronome</button>
-            <button class="menu-btn" onclick="showTool(19)">📓 Quick Notepad</button>
+            <button class="menu-btn" onclick="showTool(1)">🔡 Case Converter</button>
+            <button class="menu-btn" onclick="showTool(2)">➖ Remove Newlines</button>
+            <button class="menu-btn" onclick="showTool(3)">🔄 Reverse Text</button>
+            <button class="menu-btn" onclick="showTool(4)">📡 Morse Code</button>
+
+            <div class="menu-category">Math & Finance</div>
+            <button class="menu-btn" onclick="showTool(5)">💯 Percentage</button>
+            <button class="menu-btn" onclick="showTool(6)">💸 Bill Splitter</button>
+            <button class="menu-btn" onclick="showTool(7)">📏 Unit Converter</button>
+            <button class="menu-btn" onclick="showTool(8)">🎲 Random Number</button>
+
+            <div class="menu-category">Life & Health</div>
+            <button class="menu-btn" onclick="showTool(9)">⚖️ BMI Calculator</button>
+            <button class="menu-btn" onclick="showTool(10)">🎂 Age Calculator</button>
+            <button class="menu-btn" onclick="showTool(11)">📆 D-Day Calc</button>
+            <button class="menu-btn" onclick="showTool(12)">🎰 Lotto Numbers</button>
+            <button class="menu-btn" onclick="showTool(13)">📓 Quick Note</button>
+
+            <div class="menu-category">Utility & Dev</div>
+            <button class="menu-btn" onclick="showTool(14)">🔗 QR Generator</button>
+            <button class="menu-btn" onclick="showTool(15)">🕒 Timer / Alarm</button>
+            <button class="menu-btn" onclick="showTool(16)">⏱️ Stopwatch</button>
+            <button class="menu-btn" onclick="showTool(17)">🔐 Password Gen</button>
+            <button class="menu-btn" onclick="showTool(18)">🕒 Timestamp</button>
+            <button class="menu-btn" onclick="showTool(19)">💻 Base64 Converter</button>
+            <button class="menu-btn" onclick="showTool(20)">🎨 Color Picker</button>
+            <button class="menu-btn" onclick="showTool(21)">🎵 Metronome 🔊</button>
         </div>
     </nav>
 
     <main>
         <div class="content-wrapper">
             
-            <div class="ad-space">
-                <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-2261846676525942"
-                 data-ad-slot="4380369066"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-                <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
+            <div class="ad-banner">
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2261846676525942" data-ad-slot="4380369066" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
             </div>
 
             <div id="tool-0" class="tool-container active">
                 <div class="card">
-                    <h1>📝 Word & Character Counter</h1>
-                    <textarea id="txtInput" rows="8" placeholder="Type or paste your text here..." oninput="countText()"></textarea>
+                    <h1>Word & Character Counter</h1>
+                    <p class="tool-desc">Essential for essays, social media, and reports. Calculate character counts with or without spaces in real-time.</p>
+                    <textarea id="txtInput" rows="10" placeholder="Type or paste your text here..." oninput="countText()"></textarea>
                     <div class="result-box">
-                        With spaces: <span id="resWithSpace">0</span> / Without spaces: <span id="resNoSpace">0</span>
+                        Spaces Incl: <span id="resWithSpace">0</span> | Spaces Excl: <span id="resNoSpace">0</span>
                     </div>
                 </div>
-                <div class="info-section"><h2>Tip</h2><p>Useful for writing essays, resumes, or social media posts where character limits apply.</p></div>
             </div>
 
             <div id="tool-1" class="tool-container">
                 <div class="card">
-                    <h1>🔐 Strong Password Generator</h1>
-                    <input type="range" id="pwLen" min="6" max="32" value="12" oninput="document.getElementById('pwLenTxt').innerText=this.value">
-                    <p>Length: <span id="pwLenTxt">12</span> characters</p>
-                    <button class="btn-primary" onclick="genPw()">Generate Password</button>
-                    <div class="result-box" id="pwRes">-</div>
+                    <h1>Text Case Converter</h1>
+                    <p class="tool-desc">Transform English text into camelCase, snake_case, or PascalCase for programming or document formatting.</p>
+                    <input type="text" id="caseInput" placeholder="Enter text (e.g., daily tools pro)">
+                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+                        <button class="btn-primary" onclick="convCase('camel')">camelCase</button>
+                        <button class="btn-primary" onclick="convCase('snake')">snake_case</button>
+                        <button class="btn-primary" onclick="convCase('pascal')">PascalCase</button>
+                        <button class="btn-primary" onclick="convCase('upper')">UPPER_CASE</button>
+                    </div>
+                    <div class="result-box" id="caseRes">-</div>
                 </div>
-                <div class="info-section"><h2>Security Tip</h2><p>Generated passwords are created locally in your browser and are never sent to any server.</p></div>
             </div>
 
             <div id="tool-2" class="tool-container">
                 <div class="card">
-                    <h1>⚖️ BMI Calculator</h1>
-                    <div style="display:flex;gap:10px;">
-                        <input type="number" id="bmiH" placeholder="Height (cm)">
-                        <input type="number" id="bmiW" placeholder="Weight (kg)">
-                    </div>
-                    <button class="btn-primary" onclick="calcBMI()">Calculate</button>
-                    <div class="result-box" id="bmiRes">-</div>
+                    <h1>Newline Remover</h1>
+                    <p class="tool-desc">Merge multi-line text into a single line. Perfect for cleaning up text from PDFs.</p>
+                    <textarea id="nlInput" rows="5" placeholder="Enter multi-line text"></textarea>
+                    <button class="btn-primary" onclick="rmNewlines()">Remove Lines</button>
+                    <textarea id="nlRes" rows="5" readonly style="margin-top:15px;"></textarea>
                 </div>
             </div>
 
             <div id="tool-3" class="tool-container">
                 <div class="card">
-                    <h1>🎰 Lottery Number Generator</h1>
-                    <button class="btn-primary" onclick="genLotto()">Draw Numbers</button>
-                    <div class="result-box" id="lottoRes">? ? ? ? ? ?</div>
+                    <h1>Text Reverser</h1>
+                    <p class="tool-desc">Flip your text horizontally. Great for puzzles and unique data sorting.</p>
+                    <input type="text" id="revInput" placeholder="Enter text to reverse">
+                    <button class="btn-primary" onclick="reverseTxt()">Reverse Now</button>
+                    <div class="result-box" id="revRes">-</div>
                 </div>
             </div>
 
             <div id="tool-4" class="tool-container">
                 <div class="card">
-                    <h1>💯 Percentage Calculator</h1>
-                    <input type="number" id="perNum" placeholder="Total Value">
-                    <input type="number" id="perRate" placeholder="Percentage (%)">
-                    <button class="btn-primary" onclick="calcPer()">Calculate</button>
-                    <div class="result-box" id="perRes">-</div>
+                    <h1>Morse Code Converter</h1>
+                    <p class="tool-desc">Convert text into Morse code signals. Supports English alphabets and numbers.</p>
+                    <input type="text" id="morseInput" placeholder="Enter text or numbers">
+                    <button class="btn-primary" onclick="toMorse()">Translate</button>
+                    <div class="result-box" id="morseRes">-</div>
                 </div>
             </div>
 
             <div id="tool-5" class="tool-container">
                 <div class="card">
-                    <h1>🎂 Age Calculator</h1>
-                    <label>Date of Birth</label>
-                    <input type="date" id="birthDate">
-                    <button class="btn-primary" onclick="calcAge()">Calculate Age</button>
-                    <div class="result-box" id="ageRes">-</div>
+                    <h1>Percentage Calculator</h1>
+                    <p class="tool-desc">Calculate percentage increases, decreases, or parts of a whole instantly.</p>
+                    <input type="number" id="perNum" placeholder="Total Value">
+                    <input type="number" id="perRate" placeholder="Percent (%)">
+                    <button class="btn-primary" onclick="calcPer()">Calculate</button>
+                    <div class="result-box" id="perRes">-</div>
                 </div>
             </div>
 
             <div id="tool-6" class="tool-container">
                 <div class="card">
-                    <h1>🔠 Case Converter</h1>
-                    <textarea id="caseTxt" rows="5" placeholder="Enter text..."></textarea>
-                    <div style="display:flex;gap:10px">
-                        <button class="btn-primary" onclick="toUpper()">UPPERCASE</button>
-                        <button class="btn-primary" onclick="toLower()">lowercase</button>
-                    </div>
+                    <h1>Split Bill / Dutch Pay</h1>
+                    <p class="tool-desc">Accurately divide restaurant bills or shared costs among a group of people.</p>
+                    <input type="number" id="billAmt" placeholder="Total Bill Amount">
+                    <input type="number" id="peopleCnt" placeholder="Number of People">
+                    <button class="btn-primary" onclick="calcTip()">Calculate Per Person</button>
+                    <div class="result-box" id="tipRes">-</div>
                 </div>
             </div>
 
             <div id="tool-7" class="tool-container">
                 <div class="card">
-                    <h1>⏱️ Stopwatch</h1>
-                    <div class="result-box" id="timeDisplay" style="font-size:3rem">00:00:00</div>
-                    <div style="display:flex;gap:10px;margin-top:20px">
-                        <button class="btn-primary" id="stopwatchBtn" onclick="toggleStopwatch()">Start</button>
-                        <button class="btn-primary" onclick="resetStopwatch()" style="background:#ef4444">Reset</button>
+                    <h1>Unit Converter (cm ↔ inch)</h1>
+                    <p class="tool-desc">Switch between metric and imperial length measurements in real-time.</p>
+                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px;">
+                        <div><label>cm</label><input type="number" id="unitCm" oninput="convLen('cm')"></div>
+                        <div><label>inch</label><input type="number" id="unitInch" oninput="convLen('in')"></div>
                     </div>
                 </div>
             </div>
 
             <div id="tool-8" class="tool-container">
                 <div class="card">
-                    <h1>📆 D-Day Calculator</h1>
-                    <label>Target Date</label>
-                    <input type="date" id="ddayTarget">
-                    <button class="btn-primary" onclick="calcDDay()">Check</button>
-                    <div class="result-box" id="ddayRes">-</div>
-                </div>
-            </div>
-
-            <div id="tool-9" class="tool-container">
-                <div class="card">
-                    <h1>🎨 Color Converter</h1>
-                    <input type="color" id="colorPicker" style="height:50px" oninput="convertColor()">
-                    <div class="result-box" id="colorRes">Select a color</div>
-                </div>
-            </div>
-
-            <div id="tool-10" class="tool-container">
-                <div class="card">
-                    <h1>📏 Unit Converter (cm ↔ inch)</h1>
-                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-                        <div>
-                            <label>Centimeters (cm)</label>
-                            <input type="number" id="unitCm" oninput="convLen('cm')" placeholder="cm">
-                        </div>
-                        <div>
-                            <label>Inches (in)</label>
-                            <input type="number" id="unitInch" oninput="convLen('in')" placeholder="inch">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="tool-11" class="tool-container">
-                <div class="card">
-                    <h1>💸 Tip & Split Bill</h1>
-                    <input type="number" id="billAmt" placeholder="Total Bill Amount">
-                    <input type="number" id="peopleCnt" placeholder="Number of People" value="2">
-                    <button class="btn-primary" onclick="calcTip()">Calculate per Person</button>
-                    <div class="result-box" id="tipRes">-</div>
-                </div>
-            </div>
-
-            <div id="tool-12" class="tool-container">
-                <div class="card">
-                    <h1>🕒 Unix Timestamp Converter</h1>
-                    <p>Current Timestamp: <span id="nowTs"></span></p>
-                    <input type="number" id="tsInput" placeholder="Enter Timestamp (e.g., 1678888888)">
-                    <button class="btn-primary" onclick="convTs()">Convert to Date</button>
-                    <div class="result-box" id="tsRes">-</div>
-                </div>
-            </div>
-
-            <div id="tool-13" class="tool-container">
-                <div class="card">
-                    <h1>🎲 Random Number Generator</h1>
-                    <div style="display:flex;gap:10px">
-                        <input type="number" id="minNum" value="1" placeholder="Min">
-                        <input type="number" id="maxNum" value="100" placeholder="Max">
+                    <h1>Random Number Picker</h1>
+                    <p class="tool-desc">Generate a random number within a custom range. Ideal for giveaways.</p>
+                    <div style="display:flex; gap:10px;">
+                        <input type="number" id="minNum" value="1">
+                        <input type="number" id="maxNum" value="100">
                     </div>
                     <button class="btn-primary" onclick="genRand()">Generate</button>
                     <div class="result-box" id="randRes">-</div>
                 </div>
             </div>
 
+            <div id="tool-9" class="tool-container">
+                <div class="card">
+                    <h1>BMI Health Calculator</h1>
+                    <p class="tool-desc">Find your Body Mass Index (BMI) to keep track of your fitness level.</p>
+                    <input type="number" id="bmiH" placeholder="Height(cm)">
+                    <input type="number" id="bmiW" placeholder="Weight(kg)">
+                    <button class="btn-primary" onclick="calcBMI()">Check Status</button>
+                    <div class="result-box" id="bmiRes">-</div>
+                </div>
+            </div>
+
+            <div id="tool-10" class="tool-container">
+                <div class="card">
+                    <h1>Age Calculator</h1>
+                    <p class="tool-desc">Get your exact age based on your birthday.</p>
+                    <input type="date" id="birthDate">
+                    <button class="btn-primary" onclick="calcAge()">Calculate</button>
+                    <div class="result-box" id="ageRes">-</div>
+                </div>
+            </div>
+
+            <div id="tool-11" class="tool-container">
+                <div class="card">
+                    <h1>D-Day Countdown</h1>
+                    <p class="tool-desc">Measure the days remaining until your target date or event.</p>
+                    <input type="date" id="ddayTarget">
+                    <button class="btn-primary" onclick="calcDDay()">Check Days</button>
+                    <div class="result-box" id="ddayRes">-</div>
+                </div>
+            </div>
+
+            <div id="tool-12" class="tool-container">
+                <div class="card">
+                    <h1>Lucky Numbers Suggester</h1>
+                    <p class="tool-desc">Generate 6 random lucky numbers (1-45). Good luck!</p>
+                    <button class="btn-primary" onclick="genLotto()">Pick Numbers</button>
+                    <div class="result-box" id="lottoRes">? ? ? ? ? ?</div>
+                </div>
+            </div>
+
+            <div id="tool-13" class="tool-container">
+                <div class="card">
+                    <h1>Auto-Saving Notepad</h1>
+                    <p class="tool-desc">Jot down notes quickly. Your text is saved to your browser automatically.</p>
+                    <textarea id="memoPad" rows="15" placeholder="Start typing..."></textarea>
+                </div>
+            </div>
+
             <div id="tool-14" class="tool-container">
                 <div class="card">
-                    <h1>🔄 Reverse Text</h1>
-                    <textarea id="revInput" rows="4" placeholder="Enter text to reverse"></textarea>
-                    <button class="btn-primary" onclick="reverseTxt()">Reverse</button>
-                    <div class="result-box" id="revRes">-</div>
+                    <h1>Free QR Code Generator</h1>
+                    <p class="tool-desc">Convert any URL or text into a high-quality QR code instantly.</p>
+                    <input type="text" id="qrInput" placeholder="Enter URL or Text">
+                    <button class="btn-primary" onclick="genQR()">Generate QR</button>
+                    <div id="qrRes" style="text-align:center; margin-top:20px;"></div>
                 </div>
             </div>
 
             <div id="tool-15" class="tool-container">
                 <div class="card">
-                    <h1>➖ Remove Line Breaks</h1>
-                    <textarea id="nlInput" rows="5" placeholder="Enter text with line breaks..."></textarea>
-                    <button class="btn-primary" onclick="rmNewlines()">Remove</button>
-                    <textarea id="nlRes" rows="5" placeholder="Result..."></textarea>
+                    <h1>Online Timer & Alarm</h1>
+                    <div style="display:flex; gap:10px; align-items:center; margin-bottom:15px;">
+                        <input type="number" id="timerMin" value="0" placeholder="Min">
+                        <input type="number" id="timerSec" value="0" placeholder="Sec">
+                    </div>
+                    <button class="btn-primary" id="timerBtn" onclick="toggleTimer()">Start Timer</button>
+                    <div class="result-box" id="timerDisplay">00:00</div>
                 </div>
             </div>
 
             <div id="tool-16" class="tool-container">
                 <div class="card">
-                    <h1>📡 Morse Code Translator</h1>
-                    <input type="text" id="morseInput" placeholder="Text to convert (e.g., SOS)">
-                    <button class="btn-primary" onclick="toMorse()">Convert</button>
-                    <div class="result-box" id="morseRes">-</div>
+                    <h1>Precision Stopwatch</h1>
+                    <div class="result-box" id="swDisplay" style="font-size:3rem">00:00:00</div>
+                    <div style="display:flex; gap:10px; margin-top:20px;">
+                        <button class="btn-primary" id="swBtn" onclick="toggleStopwatch()">Start</button>
+                        <button class="btn-primary" onclick="resetStopwatch()" style="background:#ef4444">Reset</button>
+                    </div>
                 </div>
             </div>
 
             <div id="tool-17" class="tool-container">
                 <div class="card">
-                    <h1>💻 Base64 Converter</h1>
-                    <textarea id="b64Input" rows="3" placeholder="Enter text"></textarea>
-                    <div style="display:flex;gap:10px">
-                        <button class="btn-primary" onclick="b64Enc()">Encode</button>
-                        <button class="btn-primary" onclick="b64Dec()" style="background:#64748b">Decode</button>
-                    </div>
-                    <textarea id="b64Res" rows="3" style="margin-top:20px" placeholder="Result"></textarea>
+                    <h1>Secure Password Generator</h1>
+                    <input type="range" id="pwLen" min="8" max="32" value="16" oninput="document.getElementById('pwLenTxt').innerText=this.value">
+                    <p style="text-align:center;">Length: <span id="pwLenTxt">16</span> chars</p>
+                    <button class="btn-primary" onclick="genPw()">Generate Secure Pass</button>
+                    <div class="result-box" id="pwRes">-</div>
                 </div>
             </div>
 
             <div id="tool-18" class="tool-container">
                 <div class="card">
-                    <h1>🎵 Metronome</h1>
-                    <p>BPM: <span id="bpmVal">120</span></p>
-                    <input type="range" id="bpmRange" min="40" max="200" value="120" oninput="updateBpm(this.value)">
-                    <button class="btn-primary" id="metroBtn" onclick="toggleMetro()">Start</button>
+                    <h1>Unix Timestamp Converter</h1>
+                    <p>Current Timestamp: <span id="curTs"></span></p>
+                    <input type="number" id="tsIn" placeholder="Enter timestamp">
+                    <button class="btn-primary" onclick="convTs()">Convert to Date</button>
+                    <div class="result-box" id="tsRes">-</div>
                 </div>
             </div>
 
             <div id="tool-19" class="tool-container">
                 <div class="card">
-                    <h1>📓 Auto-save Notepad</h1>
-                    <textarea id="memoPad" rows="15" placeholder="Your notes will be saved automatically in the browser..."></textarea>
-                    <p style="font-size:0.8rem;color:var(--text-sub)">* Notes are stored locally in your browser.</p>
+                    <h1>Base64 Encoder / Decoder</h1>
+                    <textarea id="b64In" rows="4" placeholder="Enter text here"></textarea>
+                    <div style="display:flex; gap:10px;">
+                        <button class="btn-primary" onclick="b64Enc()">Encode</button>
+                        <button class="btn-primary" onclick="b64Dec()" style="background:#64748b">Decode</button>
+                    </div>
+                    <textarea id="b64Out" rows="4" readonly style="margin-top:15px;"></textarea>
                 </div>
             </div>
 
-            <div class="ad-space">
-                <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-2261846676525942"
-                 data-ad-slot="4380369066"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-                <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
+            <div id="tool-20" class="tool-container">
+                <div class="card">
+                    <h1>HEX & RGB Color Converter</h1>
+                    <input type="color" id="clrIn" style="height:60px;" oninput="convClr()">
+                    <div class="result-box" id="clrRes">HEX: #000000</div>
+                </div>
             </div>
 
-            <div class="seo-footer">
-                <h3>Why use 'Daily Tools Pro'?</h3>
-                <p>Daily Tools Pro is a collection of <strong>free online utility tools</strong> that you can use anywhere, anytime, without installing complex software. Optimized for both PC and mobile environments, it supports dark mode to reduce eye strain.</p>
-                
-                <h3>Key Features</h3>
-                <p><strong>Character Counter:</strong> Accurately calculates character counts with or without spaces for essays, resumes, and blog posts.</p>
-                <p><strong>Security Tools:</strong> Provides a strong password generator and Base64 encoder/decoder that process data locally in your browser for safety.</p>
-                <p><strong>Everyday Convenience:</strong> Check Lottery numbers, calculate BMI, determine your exact age, check D-Day, convert units, and more instantly.</p>
-                <p>All data is processed only on your device (browser) and is never transmitted to external servers, so you can use it with confidence. Add it to your bookmarks now!</p>
+            <div id="tool-21" class="tool-container">
+                <div class="card">
+                    <h1>Online Metronome 🔊</h1>
+                    <p class="tool-desc">Perfect for music practice. Set your BPM and follow the rhythm with visual flashes and a clean tick sound.</p>
+                    <p style="text-align:center; font-weight:bold;">BPM: <span id="bpmVal" style="color:var(--primary); font-size:1.5rem;">120</span></p>
+                    <input type="range" id="bpmRange" min="40" max="220" value="120" oninput="updateBpm(this.value)">
+                    <button class="btn-primary" id="metroBtn" onclick="toggleMetro()">Start Rhythm</button>
+                </div>
+            </div>
+
+            <div class="card" style="background:none; border:none; box-shadow:none; padding: 0; margin-top:50px;">
+                <h2 style="font-weight: 800;">Efficient Free Web Tools for Daily Productivity</h2>
+                <p>Daily Tools Pro is an <strong>all-in-one online utility platform</strong> designed to simplify your digital life. Why install multiple apps when you can access essential tools like the Word Counter, QR Generator, and Metronome directly from your browser?</p>
+                <p>We take <strong>Privacy & Security</strong> seriously. All calculations and text processing happen locally in your browser. This means your sensitive data never reaches our servers, keeping your information secure.</p>
             </div>
 
             <footer>
-                <p>&copy; 2024 Daily Tools Pro. All rights reserved.</p>
-                <p>
-                    <a onclick="openModal('privacyModal')">Privacy Policy</a> | 
-                    <a href="https://forms.gle/1arMG4Y5RodkcpEY7" target="_blank">Contact Us</a>
-                </p>
+                <p>&copy; 2024 SimSim Labs. All rights reserved.</p>
+                <p><a href="/en/privacy.html">Privacy Policy</a> | <a href="https://forms.gle/1arMG4Y5RodkcpEY7" target="_blank">Contact Us</a></p>
             </footer>
-
         </div>
     </main>
 
-    <div id="privacyModal" class="modal-overlay">
-        <div class="modal-box">
-            <button class="modal-close" onclick="closeModal('privacyModal')">&times;</button>
-            <h2>Privacy Policy</h2>
-            <div style="text-align: left; color: var(--text-sub); line-height: 1.6;">
-                <p><strong>1. Purpose of Data Processing</strong><br>
-                'Daily Tools Pro' (hereinafter 'Site') is a free web tool service available without registration. This Site does not store or collect personal information on its servers.</p>
-                
-                <p><strong>2. Cookies and Local Storage</strong><br>
-                The Site uses the browser's Local Storage for user convenience (e.g., dark mode settings, notepad content). This information is stored only on your device and is not transmitted to servers.</p>
-                
-                <p><strong>3. Google AdSense</strong><br>
-                This Site uses Google AdSense to display advertisements. Google may use cookies to serve ads based on your visit history.</p>
-                
-                <p><strong>4. Contact</strong><br>
-                For inquiries regarding the service, please use the 'Contact Us' link in the footer.</p>
-            </div>
-        </div>
-    </div>
-
     <script>
-    // ============================================================
-    // 1. Common UI Logic (Theme, Tab, Modal)
-    // ============================================================
-
-    // 1-1. Dark Mode
-    function toggleTheme() {
-        document.body.classList.toggle('dark-mode');
-        localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
-    }
-    if (localStorage.getItem('theme') === 'dark') {
-        document.body.classList.add('dark-mode');
-    }
-
-    // 1-2. Tabs
-    function showTool(idx) {
-        document.querySelectorAll('.tool-container').forEach(el => el.classList.remove('active'));
-        document.querySelectorAll('.menu-btn').forEach(el => el.classList.remove('active'));
-
-        document.getElementById(`tool-${idx}`).classList.add('active');
-        document.querySelectorAll('.menu-btn')[idx].classList.add('active');
-
-        if (window.innerWidth <= 768) {
-            document.querySelector('main').scrollTop = 0;
+        // UI & Theme
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('tools-theme-en', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
         }
-    }
+        if (localStorage.getItem('tools-theme-en') === 'dark') document.body.classList.add('dark-mode');
 
-    // 1-3. Modal
-    function openModal(id) {
-        document.getElementById(id).classList.add('open');
-    }
-
-    function closeModal(id) {
-        document.getElementById(id).classList.remove('open');
-    }
-    window.onclick = function(event) {
-        if (event.target.classList.contains('modal-overlay')) {
-            event.target.classList.remove('open');
+        function showTool(idx) {
+            document.querySelectorAll('.tool-container').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`tool-${idx}`).classList.add('active');
+            const menuBtns = document.querySelectorAll('.menu-btn');
+            menuBtns.forEach(btn => { if(btn.getAttribute('onclick').includes(`(${idx})`)) btn.classList.add('active'); });
+            if (window.innerWidth <= 768) document.querySelector('main').scrollTop = 0;
         }
-    }
 
-
-    // ============================================================
-    // 2. Tool Functions (20 Tools)
-    // ============================================================
-
-    // [Tool 0] Character Counter
-    function countText() {
-        const t = document.getElementById('txtInput').value;
-        document.getElementById('resWithSpace').innerText = t.length;
-        document.getElementById('resNoSpace').innerText = t.replace(/\s/g, '').length;
-    }
-
-    // [Tool 1] Password Generator
-    function genPw() {
-        const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
-        let result = "";
-        const len = document.getElementById('pwLen').value;
-        for (let i = 0; i < len; i++) {
-            result += chars.charAt(Math.floor(Math.random() * chars.length));
+        // --- CORE LOGIC ---
+        function countText() {
+            const t = document.getElementById('txtInput').value;
+            document.getElementById('resWithSpace').innerText = t.length;
+            document.getElementById('resNoSpace').innerText = t.replace(/\s/g, '').length;
         }
-        document.getElementById('pwRes').innerText = result;
-    }
-
-    // [Tool 2] BMI Calculator
-    function calcBMI() {
-        const h = document.getElementById('bmiH').value / 100;
-        const w = document.getElementById('bmiW').value;
-        if (!h || !w) return;
-        const bmi = (w / (h * h)).toFixed(2);
-        let status = bmi < 18.5 ? "Underweight" : bmi < 23 ? "Normal" : bmi < 25 ? "Overweight" : "Obese";
-        document.getElementById('bmiRes').innerText = `${bmi} (${status})`;
-    }
-
-    // [Tool 3] Lottery Number
-    function genLotto() {
-        const set = new Set();
-        while (set.size < 6) {
-            set.add(Math.floor(Math.random() * 45) + 1);
+        function convCase(type) {
+            const val = document.getElementById('caseInput').value;
+            if(!val) return;
+            let words = val.toLowerCase().split(/[^a-zA-Z0-9]/).filter(x => x.length > 0);
+            let res = "";
+            if(type==='camel') res = words[0] + words.slice(1).map(w => w.charAt(0).toUpperCase() + w.slice(1)).join('');
+            else if(type==='snake') res = words.join('_');
+            else if(type==='pascal') res = words.map(w => w.charAt(0).toUpperCase() + w.slice(1)).join('');
+            else if(type==='upper') res = words.join('_').toUpperCase();
+            document.getElementById('caseRes').innerText = res;
         }
-        document.getElementById('lottoRes').innerText = [...set].sort((a, b) => a - b).join('  ');
-    }
-
-    // [Tool 4] Percentage Calculator
-    function calcPer() {
-        const num = document.getElementById('perNum').value;
-        const rate = document.getElementById('perRate').value;
-        if (num && rate) {
-            document.getElementById('perRes').innerText = (num * (rate / 100)).toLocaleString();
+        function rmNewlines() { document.getElementById('nlRes').value = document.getElementById('nlInput').value.replace(/(\r\n|\n|\r)/gm, " "); }
+        function reverseTxt() { document.getElementById('revRes').innerText = document.getElementById('revInput').value.split("").reverse().join(""); }
+        const M_MAP = {'A':'.-','B':'-...','C':'-.-.','D':'-..','E':'.','F':'..-.','G':'--.','H':'....','I':'..','J':'.---','K':'-.-','L':'.-..','M':'--','N':'-.','O':'---','P':'.--.','Q':'--.-','R':'.-.','S':'...','T':'-','U':'..-','V':'...-','W':'.--','X':'-..-','Y':'-.--','Z':'--..','1':'.----','2':'..---','3':'...--','4':'....-','5':'.....','6':'-....','7':'--...','8':'---..','9':'----.','0':'-----',' ':'/'};
+        function toMorse() {
+            let val = document.getElementById('morseInput').value.toUpperCase();
+            document.getElementById('morseRes').innerText = val.split('').map(c => M_MAP[c] || c).join(' ');
         }
-    }
-
-    // [Tool 5] Age Calculator
-    function calcAge() {
-        const birthDate = new Date(document.getElementById('birthDate').value);
-        const today = new Date();
-        if (!birthDate.getTime()) return;
-
-        let age = today.getFullYear() - birthDate.getFullYear();
-        const m = today.getMonth() - birthDate.getMonth();
-        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-            age--;
+        function calcPer() { 
+            const n = document.getElementById('perNum').value; const r = document.getElementById('perRate').value;
+            if(n && r) document.getElementById('perRes').innerText = Number(n * (r/100)).toLocaleString();
         }
-        document.getElementById('ageRes').innerText = `${age} years old`;
-    }
-
-    // [Tool 6] Case Converter
-    function toUpper() {
-        const area = document.getElementById('caseTxt');
-        area.value = area.value.toUpperCase();
-    }
-
-    function toLower() {
-        const area = document.getElementById('caseTxt');
-        area.value = area.value.toLowerCase();
-    }
-
-    // [Tool 7] Stopwatch
-    let stopwatchTimer = null;
-    let stopwatchSec = 0;
-
-    function toggleStopwatch() {
-        const btn = document.getElementById('stopwatchBtn');
-        if (stopwatchTimer) {
-            clearInterval(stopwatchTimer);
-            stopwatchTimer = null;
-            btn.innerText = "Start";
-            btn.style.backgroundColor = "var(--primary)";
-        } else {
-            stopwatchTimer = setInterval(() => {
-                stopwatchSec++;
-                const h = String(Math.floor(stopwatchSec / 3600)).padStart(2, '0');
-                const m = String(Math.floor((stopwatchSec % 3600) / 60)).padStart(2, '0');
-                const s = String(stopwatchSec % 60).padStart(2, '0');
-                document.getElementById('timeDisplay').innerText = `${h}:${m}:${s}`;
+        function calcTip() {
+            const b = document.getElementById('billAmt').value; const p = document.getElementById('peopleCnt').value;
+            if(b && p > 0) document.getElementById('tipRes').innerText = Math.round(b/p).toLocaleString();
+        }
+        function convLen(type) {
+            const c = document.getElementById('unitCm'); const i = document.getElementById('unitInch');
+            if(type==='cm') i.value = (c.value * 0.3937).toFixed(2);
+            else c.value = (i.value * 2.54).toFixed(2);
+        }
+        function genRand() {
+            const min = Number(document.getElementById('minNum').value); const max = Number(document.getElementById('maxNum').value);
+            document.getElementById('randRes').innerText = Math.floor(Math.random()*(max-min+1))+min;
+        }
+        function calcBMI() {
+            const h = document.getElementById('bmiH').value / 100; const w = document.getElementById('bmiW').value;
+            if(h && w) {
+                const bmi = (w / (h*h)).toFixed(2);
+                let s = bmi < 18.5 ? "Underweight" : bmi < 23 ? "Normal" : bmi < 25 ? "Overweight" : "Obese";
+                document.getElementById('bmiRes').innerText = `${bmi} (${s})`;
+            }
+        }
+        function calcAge() {
+            const b = new Date(document.getElementById('birthDate').value); const t = new Date();
+            if(!b.getTime()) return;
+            let age = t.getFullYear() - b.getFullYear();
+            const m = t.getMonth() - b.getMonth();
+            if(m < 0 || (m === 0 && t.getDate() < b.getDate())) age--;
+            document.getElementById('ageRes').innerText = `${age} years old`;
+        }
+        function calcDDay() {
+            const t = new Date(document.getElementById('ddayTarget').value); const n = new Date(); n.setHours(0,0,0,0);
+            if(!t.getTime()) return;
+            const d = Math.ceil((t - n) / (1000*60*60*24));
+            document.getElementById('ddayRes').innerText = d === 0 ? "Today" : d > 0 ? `D-${d}` : `D+${Math.abs(d)}`;
+        }
+        function genLotto() {
+            let s = new Set(); while(s.size < 6) s.add(Math.floor(Math.random()*45)+1);
+            document.getElementById('lottoRes').innerText = [...s].sort((a,b)=>a-b).join(' ');
+        }
+        const memo = document.getElementById('memoPad');
+        if(memo) { memo.value = localStorage.getItem('dailyMemoEN') || ""; memo.oninput = () => localStorage.setItem('dailyMemoEN', memo.value); }
+        function genQR() {
+            const v = document.getElementById('qrInput').value; if(!v) return;
+            document.getElementById('qrRes').innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(v)}" style="border:10px solid white; box-shadow:var(--shadow);">`;
+        }
+        let tInt = null;
+        function toggleTimer() {
+            const btn = document.getElementById('timerBtn'); const d = document.getElementById('timerDisplay');
+            if(tInt) { clearInterval(tInt); tInt = null; btn.innerText = "Start Timer"; return; }
+            let s_total = (parseInt(document.getElementById('timerMin').value)||0)*60 + (parseInt(document.getElementById('timerSec').value)||0);
+            if(s_total<=0) return;
+            btn.innerText = "Stop";
+            tInt = setInterval(() => {
+                s_total--;
+                d.innerText = `${String(Math.floor(s_total/60)).padStart(2,'0')}:${String(s_total%60).padStart(2,'0')}`;
+                if(s_total<=0) { clearInterval(tInt); tInt=null; btn.innerText="Start Timer"; alert("Time is up!"); }
             }, 1000);
-            btn.innerText = "Stop";
-            btn.style.backgroundColor = "#f59e0b";
         }
-    }
-
-    function resetStopwatch() {
-        clearInterval(stopwatchTimer);
-        stopwatchTimer = null;
-        stopwatchSec = 0;
-        document.getElementById('timeDisplay').innerText = "00:00:00";
-        document.getElementById('stopwatchBtn').innerText = "Start";
-        document.getElementById('stopwatchBtn').style.backgroundColor = "var(--primary)";
-    }
-
-    // [Tool 8] D-Day Calculator
-    function calcDDay() {
-        const target = new Date(document.getElementById('ddayTarget').value);
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-        
-        if (!target.getTime()) return;
-        
-        const diff = target - today;
-        const day = Math.ceil(diff / (1000 * 60 * 60 * 24));
-        
-        if (day === 0) document.getElementById('ddayRes').innerText = "D-Day";
-        else document.getElementById('ddayRes').innerText = day > 0 ? `D-${day}` : `D+${Math.abs(day)}`;
-    }
-
-    // [Tool 9] Color Converter
-    function convertColor() {
-        const v = document.getElementById('colorPicker').value;
-        const r = parseInt(v.substr(1, 2), 16);
-        const g = parseInt(v.substr(3, 2), 16);
-        const b = parseInt(v.substr(5, 2), 16);
-        document.getElementById('colorRes').innerHTML = `HEX: ${v}<br>RGB: (${r}, ${g}, ${b})`;
-    }
-
-    // [Tool 10] Unit Converter
-    function convLen(type) {
-        if (type === 'cm') {
-            const cm = document.getElementById('unitCm').value;
-            document.getElementById('unitInch').value = (cm * 0.393701).toFixed(2);
-        } else {
-            const inc = document.getElementById('unitInch').value;
-            document.getElementById('unitCm').value = (inc * 2.54).toFixed(2);
+        let swI = null; let swS = 0;
+        function toggleStopwatch() {
+            const btn = document.getElementById('swBtn');
+            if(swI) { clearInterval(swI); swI = null; btn.innerText = "Start"; }
+            else {
+                swI = setInterval(() => { swS++;
+                    const h = String(Math.floor(swS/3600)).padStart(2,'0'); const m = String(Math.floor((swS%3600)/60)).padStart(2,'0'); const s = String(swS%60).padStart(2,'0');
+                    document.getElementById('swDisplay').innerText = `${h}:${m}:${s}`;
+                }, 1000);
+                btn.innerText = "Stop";
+            }
         }
-    }
-
-    // [Tool 11] Tip & Split
-    function calcTip() {
-        const bill = Number(document.getElementById('billAmt').value);
-        const ppl = Number(document.getElementById('peopleCnt').value);
-        if (ppl < 1) return;
-        // Assuming currency symbol handling isn't strictly needed for generic tool, or use basic logic
-        document.getElementById('tipRes').innerText = Math.round(bill / ppl).toLocaleString();
-    }
-
-    // [Tool 12] Timestamp
-    setInterval(() => {
-        document.getElementById('nowTs').innerText = Math.floor(Date.now() / 1000);
-    }, 1000);
-
-    function convTs() {
-        const ts = document.getElementById('tsInput').value;
-        if(!ts) return;
-        document.getElementById('tsRes').innerText = new Date(ts * 1000).toLocaleString();
-    }
-
-    // [Tool 13] Random Number
-    function genRand() {
-        const min = Number(document.getElementById('minNum').value);
-        const max = Number(document.getElementById('maxNum').value);
-        if (min > max) {
-            document.getElementById('randRes').innerText = "Range Error";
-            return;
+        function resetStopwatch() { clearInterval(swI); swI = null; swS = 0; document.getElementById('swDisplay').innerText = "00:00:00"; document.getElementById('swBtn').innerText = "Start"; }
+        function genPw() {
+            const c = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%"; let r = "";
+            for(let i=0; i<document.getElementById('pwLen').value; i++) r += c.charAt(Math.floor(Math.random()*c.length));
+            document.getElementById('pwRes').innerText = r;
         }
-        document.getElementById('randRes').innerText = Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-
-    // [Tool 14] Reverse Text
-    function reverseTxt() {
-        const s = document.getElementById('revInput').value;
-        document.getElementById('revRes').innerText = s.split("").reverse().join("");
-    }
-
-    // [Tool 15] Remove Line Breaks
-    function rmNewlines() {
-        const txt = document.getElementById('nlInput').value;
-        document.getElementById('nlRes').value = txt.replace(/(\r\n|\n|\r)/gm, " ");
-    }
-
-    // [Tool 16] Morse Code
-    const MORSE_CODE = {
-        'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.',
-        'G': '--.', 'H': '....', 'I': '..', 'J': '.---', 'K': '-.-', 'L': '.-..',
-        'M': '--', 'N': '-.', 'O': '---', 'P': '.--.', 'Q': '--.-', 'R': '.-.',
-        'S': '...', 'T': '-', 'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-',
-        'Y': '-.--', 'Z': '--..', '1': '.----', '2': '..---', '3': '...--',
-        '4': '....-', '5': '.....', '6': '-....', '7': '--...', '8': '---..',
-        '9': '----.', '0': '-----', ' ': ' '
-    };
-
-    function toMorse() {
-        const txt = document.getElementById('morseInput').value.toUpperCase();
-        document.getElementById('morseRes').innerText = txt.split('').map(c => MORSE_CODE[c] || c).join(' ');
-    }
-
-    // [Tool 17] Base64
-    function b64Enc() {
-        try {
-            const val = document.getElementById('b64Input').value;
-            document.getElementById('b64Res').value = btoa(unescape(encodeURIComponent(val)));
-        } catch (e) {
-            document.getElementById('b64Res').value = "Conversion Failed";
+        setInterval(() => { document.getElementById('curTs').innerText = Math.floor(Date.now()/1000); }, 1000);
+        function convTs() { 
+            const ts = document.getElementById('tsIn').value; if(ts) document.getElementById('tsRes').innerText = new Date(ts*1000).toLocaleString('en-US');
         }
-    }
-
-    function b64Dec() {
-        try {
-            const val = document.getElementById('b64Input').value;
-            document.getElementById('b64Res').value = decodeURIComponent(escape(atob(val)));
-        } catch (e) {
-            document.getElementById('b64Res').value = "Invalid Base64 Format";
+        function b64Enc() { document.getElementById('b64Out').value = btoa(unescape(encodeURIComponent(document.getElementById('b64In').value))); }
+        function b64Dec() { try { document.getElementById('b64Out').value = decodeURIComponent(escape(atob(document.getElementById('b64In').value))); } catch(e){ alert('Invalid Base64'); } }
+        function convClr() { 
+            const v = document.getElementById('clrIn').value;
+            const r = parseInt(v.substr(1,2),16); const g = parseInt(v.substr(3,2),16); const b = parseInt(v.substr(5,2),16);
+            document.getElementById('clrRes').innerText = `HEX: ${v.toUpperCase()} / RGB: (${r},${g},${b})`;
         }
-    }
 
-    // [Tool 18] Metronome
-    let metroTimer = null;
-    let isMetroOn = false;
-
-    function updateBpm(val) {
-        document.getElementById('bpmVal').innerText = val;
-        if (isMetroOn) {
-            toggleMetro();
-            toggleMetro();
+        // --- Metronome with Sound ---
+        let mI = null; let mOn = false; let audioCtx = null;
+        function playTick() {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const osc = audioCtx.createOscillator(); const gain = audioCtx.createGain();
+            osc.type = 'sine'; osc.frequency.setValueAtTime(880, audioCtx.currentTime);
+            gain.gain.setValueAtTime(0.03, audioCtx.currentTime);
+            osc.connect(gain); gain.connect(audioCtx.destination);
+            osc.start(); gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.1); osc.stop(audioCtx.currentTime + 0.1);
         }
-    }
-
-    function toggleMetro() {
-        const btn = document.getElementById('metroBtn');
-        if (isMetroOn) {
-            clearInterval(metroTimer);
-            isMetroOn = false;
-            btn.innerText = "Start";
-            btn.style.backgroundColor = "var(--primary)";
-            btn.style.opacity = '1';
-        } else {
-            isMetroOn = true;
-            btn.innerText = "Stop";
-            btn.style.backgroundColor = "#f59e0b";
-            
-            const bpm = document.getElementById('bpmRange').value;
-            const ms = 60000 / bpm;
-            
-            metroTimer = setInterval(() => {
-                btn.style.opacity = btn.style.opacity === '0.5' ? '1' : '0.5';
-            }, ms);
+        function updateBpm(v) { document.getElementById('bpmVal').innerText = v; if(mOn) { toggleMetro(); toggleMetro(); } }
+        function toggleMetro() {
+            const btn = document.getElementById('metroBtn');
+            if(mOn) { clearInterval(mI); mOn = false; btn.innerText="Start Rhythm"; btn.style.opacity='1'; }
+            else { 
+                mOn = true; btn.innerText="Stop"; if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+                const ms = 60000/document.getElementById('bpmRange').value;
+                playTick(); mI = setInterval(() => { btn.style.opacity = btn.style.opacity === '0.5' ? '1' : '0.5'; playTick(); }, ms);
+            }
         }
-    }
-
-    // [Tool 19] Notepad
-    const memo = document.getElementById('memoPad');
-    if (memo) {
-        memo.value = localStorage.getItem('myMemo') || "";
-        memo.addEventListener('input', function() {
-            localStorage.setItem('myMemo', this.value);
-        });
-    }
     </script>
 </body>
 </html>
